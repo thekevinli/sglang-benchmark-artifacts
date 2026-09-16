@@ -1,827 +1,0 @@
-============================= test session starts ==============================
-platform linux -- Python 3.10.12, pytest-9.1.1, pluggy-1.6.0 -- /home/colligo/sglang-wiki/envs/run/bin/python
-cachedir: .pytest_cache
-rootdir: /home/colligo/sglang-wiki/repos/sglang-omni
-configfile: pyproject.toml
-plugins: anyio-4.14.2, asyncio-1.4.0
-asyncio: mode=strict, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
-collecting ... collected 3 items
-
-tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[text] Failed to import mooncake: No module named 'mooncake'. MooncakeRelay will not work. Install with: pip install mooncake-transfer-engine
-Failed to import nixl: No module named 'nixl'. NixlRelay will not work.
-Failed to import torchada: No module named 'torchada'. MUSA platform compatibility will not work.
-libfabric:2509416:1789540784::core:core:cuda_gdrcopy_hmem_init():192<warn> gdrcopy_dl_hmem_init failed!
-libfabric:2509481:1789540784::core:core:cuda_gdrcopy_hmem_init():192<warn> gdrcopy_dl_hmem_init failed!
-libfabric:2509416:1789540784::core:core:fi_getinfo_():1392<warn> fi_getinfo: provider efa output empty list
-libfabric:2509481:1789540784::core:core:fi_getinfo_():1392<warn> fi_getinfo: provider efa output empty list
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Bootstrap: Using eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO cudaDriverVersion 13000
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NCCL version 2.29.7+cuda13.2
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NCCL git version stable b81d6a5a3
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/Plugin: Loaded net plugin Libfabric (v10)
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Successfully loaded external network plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/OFI Initializing aws-ofi-nccl 1.16.1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/OFI Using Libfabric version 2.1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/OFI Using CUDA driver version 13000 with runtime 12080
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/OFI Configuring AWS-specific options
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/OFI Internode latency set at 75.0 us
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/OFI Using transport protocol RDMA (platform set)
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/OFI No eligible providers were found
-
-[2026-09-15 23:39:44] pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):215 NCCL WARN NET/OFI Failed to initialize rdma protocol
-
-[2026-09-15 23:39:44] pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):352 NCCL WARN NET/OFI aws-ofi-nccl initialization failed
-
-[2026-09-15 23:39:44] pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] ncclResult_t nccl_net_ofi_init_v6(ncclDebugLogger_t):166 NCCL WARN NET/OFI Initializing plugin failed
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO plugin/net/net_v10.cc:82 -> 2
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Failed to initialize NET plugin Libfabric
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/IB : No device found.
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/IB : Using [RO]; OOB eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Failed to initialize NET plugin IB
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/Socket : Using [0]eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Successfully loaded external gin plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO [Rank 0] ncclCommInitRank comm 0x560ae2783070 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 64000 commId 0xc6d61af9e9e20b09 - Init START
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO RAS client listening socket at ::1<28028>
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Bootstrap timings total 0.001788 (create 0.000073, send 0.000258, recv 0.000455, ring 0.000049, delay 0.000002)
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NCCL_CUMEM_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO MNNVL busId 0x64000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO cudaDriverVersion 13000
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Bootstrap: Using eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NCCL version 2.29.7+cuda13.2
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NCCL git version stable b81d6a5a3
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/Plugin: Loaded net plugin Libfabric (v10)
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Successfully loaded external network plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/OFI Initializing aws-ofi-nccl 1.16.1
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/OFI Using Libfabric version 2.1
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/OFI Using CUDA driver version 13000 with runtime 12080
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/OFI Configuring AWS-specific options
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/OFI Internode latency set at 75.0 us
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/OFI Using transport protocol RDMA (platform set)
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/OFI No eligible providers were found
-
-[2026-09-15 23:39:44] pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):215 NCCL WARN NET/OFI Failed to initialize rdma protocol
-
-[2026-09-15 23:39:44] pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):352 NCCL WARN NET/OFI aws-ofi-nccl initialization failed
-
-[2026-09-15 23:39:44] pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] ncclResult_t nccl_net_ofi_init_v6(ncclDebugLogger_t):166 NCCL WARN NET/OFI Initializing plugin failed
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO plugin/net/net_v10.cc:82 -> 2
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Failed to initialize NET plugin Libfabric
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/IB : No device found.
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/IB : Using [RO]; OOB eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Failed to initialize NET plugin IB
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/Socket : Using [0]eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Successfully loaded external gin plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO [Rank 1] ncclCommInitRank comm 0x558b9b89c5b0 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 75000 commId 0xc6d61af9e9e20b09 - Init START
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO RAS client listening socket at ::1<28028>
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Bootstrap timings total 0.001316 (create 0.000058, send 0.000099, recv 0.000288, ring 0.000033, delay 0.000001)
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NCCL_CUMEM_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO MNNVL busId 0x75000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NCCL_NVLS_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO comm 0x560ae2783070 rank 0 nRanks 2 nNodes 1 localRanks 2 localRank 0 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 00/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 01/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 02/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 03/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 04/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 05/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 06/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 07/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 08/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 09/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 10/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 11/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 12/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 13/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 14/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 15/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 16/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 17/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 18/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 19/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 20/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 21/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 22/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 23/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] -1/-1/-1->0->1 [7] -1/-1/-1->0->1 [8] -1/-1/-1->0->1 [9] -1/-1/-1->0->1 [10] -1/-1/-1->0->1 [11] -1/-1/-1->0->1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] -1/-1/-1->0->1 [19] -1/-1/-1->0->1 [20] -1/-1/-1->0->1 [21] -1/-1/-1->0->1 [22] -1/-1/-1->0->1 [23] -1/-1/-1->0->1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2510278 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 3
-pluto-prod-yutengl-dev-202-3-0:2509416:2510275 [0] NCCL INFO [Proxy Service] Device 0 CPU core 11
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202= 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NCCL_NVLS_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO comm 0x558b9b89c5b0 rank 1 nRanks 2 nNodes 1 localRanks 2 localRank 1 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3] -1/-1/-1->1->0 [4] -1/-1/-1->1->0 [5] -1/-1/-1->1->0 [6] 0/-1/-1->1->-1 [7] 0/-1/-1->1->-1 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] -1/-1/-1->1->0 [13] -1/-1/-1->1->0 [14] -1/-1/-1->1->0 [15] -1/-1/-1->1->0 [16] -1/-1/-1->1->0 [17] -1/-1/-1->1->0 [18] 0/-1/-1->1->-1 [19] 0/-1/-1->1->-1 [20] 0/-1/-1->1->-1 [21] 0/-1/-1->1->-1 [22] 0/-1/-1->1->-1 [23] 0/-1/-1->1->-1
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2509481:2510276 [0] NCCL INFO [Proxy Service] Device 1 CPU core 11
-pluto-prod-yutengl-dev-202-3-0:2509481:2510277 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 3
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Connected all trees
-pluto-prod-yutengl-dev-202-3-0:2509481:2510279 [0] NCCL INFO [Proxy Progress] Device 1 CPU core 111
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO TUNER/PluMulti-thread loading shards:   0% Completed | 0/27 [00:00<?, ?it/s]Multi-thread loading shards:   4% Completed | 1/27 [00:00<00:12,  2.06it/s]Multi-thread loading shards:   7% Completed | 2/27 [00:00<00:11,  2.13it/s]Multi-thread loading shards:  11% Completed | 3/27 [00:01<00:11,  2.02it/s]Multi-thread loading shards:  15% Completed | 4/27 [00:01<00:10,  2.12it/s]Multi-thread loading shards:  19% Completed | 5/27 [00:02<00:11,  1.94it/s]Multi-thread loading shards:  22% Completed | 6/27 [00:02<00:10,  1.96it/s]Multi-thread loading shards:  26% Completed | 7/27 [00:03<00:10,  1.87it/s]Multi-thread loading shards:  30% Completed | 8/27 [00:04<00:10,  1.88it/s]Multi-thread loading shards:  33% Completed | 9/27 [00:04<00:10,  1.80it/s]Multi-thread loading shards:  37% Completed | 10/27 [00:05<00:08,  1.89it/s]Multi-thread loading shards:  41% Completed | 11/27 [00:05<00:08,  1.83it/s]Multi-thread loading shards:  44% Completed | 12/27 [00:06<00:08,  1.84it/s]Multi-thread loading shards:  48% Completed | 13/27 [00:06<00:07,  1.76it/s]Multi-thread loading shards:  52% Completed | 14/27 [00:07<00:07,  1.85it/s]Multi-thread loading shards:  56% Completed | 15/27 [00:07<00:06,  1.88it/s]Multi-thread loading shards:  59% Completed | 16/27 [00:08<00:05,  1.91it/s]Multi-thread loading shards:  63% Completed | 17/27 [00:09<00:05,  1.83it/s]Multi-thread loading shards:  67% Completed | 18/27 [00:09<00:04,  1.85it/s]Multi-thread loading shards:  70% Completed | 19/27 [00:10<00:04,  1.86it/s]Multi-thread loading shards:  74% Completed | 20/27 [00:10<00:03,  1.90it/s]Multi-thread loading shards:  78% Completed | 21/27 [00:11<00:03,  1.83it/s]Multi-thread loading shards:  81% Completed | 22/27 [00:11<00:02,  1.83it/s]Multi-thread loading shards:  85% Completed | 23/27 [00:12<00:02,  1.74it/s]Multi-thread loading shards:  89% Completed | 24/27 [00:12<00:01,  1.78it/s]Multi-thread loading shards:  93% Completed | 25/27 [00:13<00:01,  1.81it/s]Multi-thread loading shards:  96% Completed | 26/27 [00:13<00:00,  1.95it/s]Multi-thread loading shards: 100% Completed | 27/27 [00:13<00:00,  2.49it/s]Multi-thread loading shards: 100% Completed | 27/27 [00:13<00:00,  1.93it/s]
-Multi-thread loading shards:   0% Completed | 0/1 [00:00<?, ?it/s]Multi-thread loading shards: 100% Completed | 1/1 [00:00<00:00,  5.05it/s]Multi-thread loading shards: 100% Completed | 1/1 [00:00<00:00,  5.04it/s]
-  0%|          | 0/36 [00:00<?, ?it/s]Capturing batches (bs=256 avail_mem=30.61 GB):   0%|          | 0/36 [00:00<?, ?it/s]Capturing batches (bs=256 avail_mem=30.61 GB):   3%|▎         | 1/36 [00:01<00:55,  1.59s/it]Capturing batches (bs=248 avail_mem=30.31 GB):   3%|▎         | 1/36 [00:01<00:55,  1.59s/it]Capturing batches (bs=248 avail_mem=30.31 GB):   6%|▌         | 2/36 [00:01<00:26,  1.30it/s]Capturing batches (bs=240 avail_mem=30.30 GB):   6%|▌         | 2/36 [00:01<00:26,  1.30it/s]Capturing batches (bs=240 avail_mem=30.30 GB):   8%|▊         | 3/36 [00:01<00:16,  1.97it/s]Capturing batches (bs=232 avail_mem=30.28 GB):   8%|▊         | 3/36 [00:01<00:16,  1.97it/s]Capturing batches (bs=232 avail_mem=30.28 GB):  11%|█         | 4/36 [00:02<00:12,  2.60it/s]Capturing batches (bs=224 avail_mem=30.26 GB):  11%|█         | 4/36 [00:02<00:12,  2.60it/s]Capturing batches (bs=224 avail_mem=30.26 GB):  14%|█▍        | 5/36 [00:02<00:09,  3.17it/s]Capturing batches (bs=216 avail_mem=30.24 GB):  14%|█▍        | 5/36 [00:02<00:09,  3.17it/s]Capturing batches (bs=216 avail_mem=30.24 GB):  17%|█▋        | 6/36 [00:02<00:08,  3.64it/s]Capturing batches (bs=208 avail_mem=30.22 GB):  17%|█▋        | 6/36 [00:02<00:08,  3.64it/s]Capturing batches (bs=208 avail_mem=30.22 GB):  19%|█▉        | 7/36 [00:02<00:07,  4.02it/s]Capturing batches (bs=200 avail_mem=30.21 GB):  19%|█▉        | 7/36 [00:02<00:07,  4.02it/s]Capturing batches (bs=200 avail_mem=30.21 GB):  22%|██▏       | 8/36 [00:02<00:06,  4.34it/s]Capturing batches (bs=192 avail_mem=30.19 GB):  22%|██▏       | 8/36 [00:02<00:06,  4.34it/s]Capturing batches (bs=192 avail_mem=30.19 GB):  25%|██▌       | 9/36 [00:03<00:05,  4.53it/s]Capturing batches (bs=184 avail_mem=30.17 GB):  25%|██▌       | 9/36 [00:03<00:05,  4.53it/s]Capturing batches (bs=184 avail_mem=30.17 GB):  28%|██▊       | 10/36 [00:03<00:05,  4.69it/s]Capturing batches (bs=176 avail_mem=30.15 GB):  28%|██▊       | 10/36 [00:03<00:05,  4.69it/s]Capturing batches (bs=176 avail_mem=30.15 GB):  31%|███       | 11/36 [00:03<00:05,  4.81it/s]Capturing batches (bs=168 avail_mem=30.13 GB):  31%|███       | 11/36 [00:03<00:05,  4.81it/s]Capturing batches (bs=168 avail_mem=30.13 GB):  33%|███▎      | 12/36 [00:03<00:04,  4.93it/s]Capturing batches (bs=160 avail_mem=30.11 GB):  33%|███▎      | 12/36 [00:03<00:04,  4.93it/s]Capturing batches (bs=160 avail_mem=30.11 GB):  36%|███▌      | 13/36 [00:03<00:04,  4.89it/s]Capturing batches (bs=152 avail_mem=30.09 GB):  36%|███▌      | 13/36 [00:03<00:04,  4.89it/s]Capturing batches (bs=152 avail_mem=30.09 GB):  39%|███▉      | 14/36 [00:04<00:04,  4.96it/s]Capturing batches (bs=144 avail_mem=30.08 GB):  39%|███▉      | 14/36 [00:04<00:04,  4.96it/s]Capturing batches (bs=144 avail_mem=30.08 GB):  42%|████▏     | 15/36 [00:04<00:04,  5.02it/s]Capturing batches (bs=136 avail_mem=30.06 GB):  42%|████▏     | 15/36 [00:04<00:04,  5.02it/s]Capturing batches (bs=136 avail_mem=30.06 GB):  44%|████▍     | 16/36 [00:04<00:03,  5.03it/s]Capturing batches (bs=128 avail_mem=30.04 GB):  44%|████▍     | 16/36 [00:04<00:03,  5.03it/s]Capturing batches (bs=128 avail_mem=30.04 GB):  47%|████▋     | 17/36 [00:04<00:03,  5.02it/s]Capturing batches (bs=120 avail_mem=30.02 GB):  47%|████▋     | 17/36 [00:04<00:03,  5.02it/s]Capturing batches (bs=120 avail_mem=30.02 GB):  50%|█████     | 18/36 [00:04<00:03,  5.08it/s]Capturing batches (bs=112 avail_mem=30.00 GB):  50%|█████     | 18/36 [00:04<00:03,  5.08it/s]Capturing batches (bs=112 avail_mem=30.00 GB):  53%|█████▎    | 19/36 [00:05<00:03,  5.12it/s]Capturing batches (bs=104 avail_mem=29.98 GB):  53%|█████▎    | 19/36 [00:05<00:03,  5.12it/s]Capturing batches (bs=104 avail_mem=29.98 GB):  56%|█████▌    | 20/36 [00:05<00:03,  5.12it/s]Capturing batches (bs=96 avail_mem=29.96 GB):  56%|█████▌    | 20/36 [00:05<00:03,  5.12it/s] Capturing batches (bs=96 avail_mem=29.96 GB):  58%|█████▊    | 21/36 [00:05<00:02,  5.11it/s]Capturing batches (bs=88 avail_mem=29.94 GB):  58%|█████▊    | 21/36 [00:05<00:02,  5.11it/s]Capturing batches (bs=88 avail_mem=29.94 GB):  61%|██████    | 22/36 [00:05<00:02,  5.12it/s]Capturing batches (bs=80 avail_mem=29.92 GB):  61%|██████    | 22/36 [00:05<00:02,  5.12it/s]Capturing batches (bs=80 avail_mem=29.92 GB):  64%|██████▍   | 23/36 [00:05<00:02,  5.13it/s]Capturing batches (bs=72 avail_mem=29.90 GB):  64%|██████▍   | 23/36 [00:05<00:02,  5.13it/s]Capturing batches (bs=72 avail_mem=29.90 GB):  67%|██████▋   | 24/36 [00:06<00:02,  5.13it/s]Capturing batches (bs=64 avail_mem=29.89 GB):  67%|██████▋   | 24/36 [00:06<00:02,  5.13it/s]Capturing batches (bs=64 avail_mem=29.89 GB):  69%|██████▉   | 25/36 [00:06<00:02,  5.11it/s]Capturing batches (bs=56 avail_mem=29.87 GB):  69%|██████▉   | 25/36 [00:06<00:02,  5.11it/s]Capturing batches (bs=56 avail_mem=29.87 GB):  72%|███████▏  | 26/36 [00:06<00:01,  5.11it/s]Capturing batches (bs=48 avail_mem=29.85 GB):  72%|███████▏  | 26/36 [00:06<00:01,  5.11it/s]Capturing batches (bs=48 avail_mem=29.85 GB):  75%|███████▌  | 27/36 [00:06<00:01,  5.09it/s]Capturing batches (bs=40 avail_mem=29.83 GB):  75%|███████▌  | 27/36 [00:06<00:01,  5.09it/s]Capturing batches (bs=40 avail_mem=29.83 GB):  78%|███████▊  | 28/36 [00:07<00:02,  3.72it/s]Capturing batches (bs=32 avail_mem=29.81 GB):  78%|███████▊  | 28/36 [00:07<00:02,  3.72it/s]Capturing batches (bs=32 avail_mem=29.81 GB):  81%|████████  | 29/36 [00:07<00:02,  3.31it/s]Capturing batches (bs=24 avail_mem=29.79 GB):  81%|████████  | 29/36 [00:07<00:02,  3.31it/s]Capturing batches (bs=24 avail_mem=29.79 GB):  83%|████████▎ | 30/36 [00:09<00:04,  1.38it/s]Capturing batches (bs=16 avail_mem=29.78 GB):  83%|████████▎ | 30/36 [00:09<00:04,  1.38it/s]Capturing batches (bs=16 avail_mem=29.78 GB):  86%|████████▌ | 31/36 [00:09<00:02,  1.77it/s]Capturing batches (bs=12 avail_mem=29.76 GB):  86%|████████▌ | 31/36 [00:09<00:02,  1.77it/s]Capturing batches (bs=12 avail_mem=29.76 GB):  89%|████████▉ | 32/36 [00:09<00:02,  1.94it/s]Capturing batches (bs=8 avail_mem=29.74 GB):  89%|████████▉ | 32/36 [00:09<00:02,  1.94it/s] Capturing batches (bs=8 avail_mem=29.74 GB):  92%|█████████▏| 33/36 [00:09<00:01,  2.38it/s]Capturing batches (bs=4 avail_mem=29.72 GB):  92%|█████████▏| 33/36 [00:09<00:01,  2.38it/s]Capturing batches (bs=4 avail_mem=29.72 GB):  94%|█████████▍| 34/36 [00:10<00:00,  2.86it/s]Capturing batches (bs=2 avail_mem=29.70 GB):  94%|█████████▍| 34/36 [00:10<00:00,  2.86it/s]Capturing batches (bs=2 avail_mem=29.70 GB):  97%|█████████▋| 35/36 [00:10<00:00,  3.31it/s]Capturing batches (bs=1 avail_mem=29.68 GB):  97%|█████████▋| 35/36 [00:10<00:00,  3.31it/s]Capturing batches (bs=1 avail_mem=29.68 GB): 100%|██████████| 36/36 [00:10<00:00,  3.50it/s]Capturing batches (bs=1 avail_mem=29.68 GB): 100%|██████████| 36/36 [00:10<00:00,  3.39it/s]
--3-0:2509416:2509416 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Connected all trees
-pluto-prod-yutengl-dev-202-3-0:2509416:2510280 [0] NCCL INFO [Proxy Progress] Device 0 CPU core 111
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO TUNER/Plugin: Using nccl_ofi_tuner (v3)
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/OFI Region base Tuner is chosen for platform: p5.48xlarge
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/OFI Region Tuner init (platform 0): comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO NET/OFI Tuner init: comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Symmetric memory is not supported. cuMemEnable 0, globalGinSupport 0, globalNicFused 0 cuMemGdrSupport 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO CC Off, workFifoBytes 1048576
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO ncclCommInitRank comm 0x560ae2783070 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 64000 commId 0xc6d61af9e9e20b09 - Init COMPLETE
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Init timings - ncclCommInitRank: rank 0 nranks 2 total 0.44 (kernels 0.32, alloc 0.04, bootstrap 0.00, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.06, rest 0.00)
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Comm config Blocking set to 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO [Rank 0] ncclCommInitRankConfig comm 0x560b1fb70d90 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 64000 commId 0xf69a8b5dffe6bee1 - Init START
-pluto-prod-yutengl-dev-202-3-0:2509416:25094gin: Could not find: libnccl-tuner.so
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO TUNER/Plugin: Using nccl_ofi_tuner (v3)
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/OFI Region base Tuner is chosen for platform: p5.48xlarge
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/OFI Region Tuner init (platform 0): comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO NET/OFI Tuner init: comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Symmetric memory is not supported. cuMemEnable 0, globalGinSupport 0, globalNicFused 0 cuMemGdrSupport 1
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO ncclCommInitRank comm 0x558b9b89c5b0 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 75000 commId 0xc6d61af9e9e20b09 - Init COMPLETE
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.44 (kernels 0.31, alloc 0.04, bootstrap 0.00, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.06, rest 0.00)
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Comm config Blocking set to 1
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO [Rank 1] ncclCommInitRankConfig comm 0x558bd82750f0 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 75000 commId 0xf69a8b5dffe6bee1 - Init START
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Bootstrap timings total 0.000805 (create 0.000070, send 0.000139, recv 0.000376, ring 0.000033, delay 0.000000)
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO MNNVL busId 0x75000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO comm 0x558bd82750f0 rank 1 nRanks 2 nNodes 1 localRanks 2 localRank 1 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3] -1/-1/-1->1->0 [4] -1/-1/-1->1->0 [5] -1/-1/-1->1->0 [6] 0/-1/-1->1->-1 [7] 0/-1/-1->1->-1 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] -1/-1/-1->1->0 [13] -1/-1/-1->1->0 [14] -1/-1/-1->1->0 [15] -1/-1/-1->1->0 [16] -1/-1/-1->1->0 [17] -1/-1/-1->1->0 [18] 0/-1/-1->1->-1 [19] 0/-1/-1->1->-1 [20] 0/-1/-1->1->-1 [21] 0/-1/-1->1->-1 [22] 0/-1/-1->1->-1 [23] 0/-1/-1->1->-1
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2509481:2511202 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 40
-pluto-prod-yutengl-dev-202-3-0:2509481:2511200 [0] NCCL INFO [Proxy Service] Device 1 CPU core 15
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509481:2509481 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/IPC
-plu16 [0] NCCL INFO Bootstrap timings total 0.001229 (create 0.000053, send 0.000239, recv 0.000620, ring 0.000049, delay 0.000000)
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO MNNVL busId 0x64000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO comm 0x560b1fb70d90 rank 0 nRanks 2 nNodes 1 localRanks 2 localRank 0 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 00/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 01/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 02/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 03/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 04/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 05/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 06/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 07/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 08/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 09/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 10/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 11/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 12/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 13/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 14/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 15/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 16/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 17/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 18/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 19/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 20/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 21/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 22/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 23/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] -1/-1/-1->0->1 [7] -1/-1/-1->0->1 [8] -1/-1/-1->0->1 [9] -1/-1/-1->0->1 [10] -1/-1/-1->0->1 [11] -1/-1/-1->0->1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] -1/-1/-1->0->1 [19] -1/-1/-1->0->1 [20] -1/-1/-1->0->1 [21] -1/-1/-1->0->1 [22] -1/-1/-1->0->1 [23] -1/-1/-1->0->1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2511201 [0] NCCL INFO [Proxy Service] Device 0 CPU core 15
-pluto-prod-yutengl-dev-202-3-0:2509416:2511203 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 1
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2509416:2509416 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dPASSED
-tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[image] Failed to import mooncake: No module named 'mooncake'. MooncakeRelay will not work. Install with: pip install mooncake-transfer-engine
-Failed to import nixl: No module named 'nixl'. NixlRelay will not work.
-Failed to import torchada: No module named 'torchada'. MUSA platform compatibility will not work.
-libfabric:2511634:1789540852::core:core:cuda_gdrcopy_hmem_init():192<warn> gdrcopy_dl_hmem_init failed!
-libfabric:2511699:1789540852::core:core:cuda_gdrcopy_hmem_init():192<warn> gdrcopy_dl_hmem_init failed!
-libfabric:2511634:1789540852::core:core:fi_getinfo_():1392<warn> fi_getinfo: provider efa output empty list
-libfabric:2511699:1789540852::core:core:fi_getinfo_():1392<warn> fi_getinfo: provider efa output empty list
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Bootstrap: Using eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO cudaDriverVersion 13000
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NCCL version 2.29.7+cuda13.2
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NCCL git version stable b81d6a5a3
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/Plugin: Loaded net plugin Libfabric (v10)
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Successfully loaded external network plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/OFI Initializing aws-ofi-nccl 1.16.1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/OFI Using Libfabric version 2.1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/OFI Using CUDA driver version 13000 with runtime 12080
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/OFI Configuring AWS-specific options
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/OFI Internode latency set at 75.0 us
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/OFI Using transport protocol RDMA (platform set)
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/OFI No eligible providers were found
-
-[2026-09-15 23:40:52] pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):215 NCCL WARN NET/OFI Failed to initialize rdma protocol
-
-[2026-09-15 23:40:52] pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):352 NCCL WARN NET/OFI aws-ofi-nccl initialization failed
-
-[2026-09-15 23:40:52] pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] ncclResult_t nccl_net_ofi_init_v6(ncclDebugLogger_t):166 NCCL WARN NET/OFI Initializing plugin failed
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO plugin/net/net_v10.cc:82 -> 2
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Failed to initialize NET plugin Libfabric
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/IB : No device found.
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/IB : Using [RO]; OOB eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Failed to initialize NET plugin IB
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/Socket : Using [0]eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Successfully loaded external gin plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO [Rank 0] ncclCommInitRank comm 0x55b9f406bbf0 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 64000 commId 0x4b86653f6bb6a8ea - Init START
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO RAS client listening socket at ::1<28028>
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Bootstrap timings total 0.004174 (create 0.000072, send 0.000140, recv 0.003087, ring 0.000083, delay 0.000001)
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NCCL_CUMEM_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO MNNVL busId 0x64000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO cudaDriverVersion 13000
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Bootstrap: Using eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NCCL version 2.29.7+cuda13.2
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NCCL git version stable b81d6a5a3
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/Plugin: Loaded net plugin Libfabric (v10)
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Successfully loaded external network plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/OFI Initializing aws-ofi-nccl 1.16.1
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/OFI Using Libfabric version 2.1
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/OFI Using CUDA driver version 13000 with runtime 12080
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/OFI Configuring AWS-specific options
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/OFI Internode latency set at 75.0 us
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/OFI Using transport protocol RDMA (platform set)
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/OFI No eligible providers were found
-
-[2026-09-15 23:40:52] pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):215 NCCL WARN NET/OFI Failed to initialize rdma protocol
-
-[2026-09-15 23:40:52] pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):352 NCCL WARN NET/OFI aws-ofi-nccl initialization failed
-
-[2026-09-15 23:40:52] pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] ncclResult_t nccl_net_ofi_init_v6(ncclDebugLogger_t):166 NCCL WARN NET/OFI Initializing plugin failed
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO plugin/net/net_v10.cc:82 -> 2
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Failed to initialize NET plugin Libfabric
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/IB : No device found.
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/IB : Using [RO]; OOB eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Failed to initialize NET plugin IB
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/Socket : Using [0]eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Successfully loaded external gin plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO [Rank 1] ncclCommInitRank comm 0x55aeabc5fa10 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 75000 commId 0x4b86653f6bb6a8ea - Init START
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO RAS client listening socket at ::1<28028>
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Bootstrap timings total 0.001374 (create 0.000071, send 0.000135, recv 0.000523, ring 0.000042, delay 0.000001)
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NCCL_CUMEM_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO MNNVL busId 0x75000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NCCL_NVLS_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO comm 0x55b9f406bbf0 rank 0 nRanks 2 nNodes 1 localRanks 2 localRank 0 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 00/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 01/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 02/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 03/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 04/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 05/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 06/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 07/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 08/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 09/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 10/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 11/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 12/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 13/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 14/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 15/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 16/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 17/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 18/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 19/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 20/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 21/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 22/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 23/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] -1/-1/-1->0->1 [7] -1/-1/-1->0->1 [8] -1/-1/-1->0->1 [9] -1/-1/-1->0->1 [10] -1/-1/-1->0->1 [11] -1/-1/-1->0->1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] -1/-1/-1->0->1 [19] -1/-1/-1->0->1 [20] -1/-1/-1->0->1 [21] -1/-1/-1->0->1 [22] -1/-1/-1->0->1 [23] -1/-1/-1->0->1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2512534 [0] NCCL INFO [Proxy Service] Device 0 CPU core 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2512536 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 108
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-20= 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NCCL_NVLS_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO comm 0x55aeabc5fa10 rank 1 nRanks 2 nNodes 1 localRanks 2 localRank 1 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3] -1/-1/-1->1->0 [4] -1/-1/-1->1->0 [5] -1/-1/-1->1->0 [6] 0/-1/-1->1->-1 [7] 0/-1/-1->1->-1 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] -1/-1/-1->1->0 [13] -1/-1/-1->1->0 [14] -1/-1/-1->1->0 [15] -1/-1/-1->1->0 [16] -1/-1/-1->1->0 [17] -1/-1/-1->1->0 [18] 0/-1/-1->1->-1 [19] 0/-1/-1->1->-1 [20] 0/-1/-1->1->-1 [21] 0/-1/-1->1->-1 [22] 0/-1/-1->1->-1 [23] 0/-1/-1->1->-1
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2511699:2512537 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 142
-pluto-prod-yutengl-dev-202-3-0:2511699:2512535 [0] NCCL INFO [Proxy Service] Device 1 CPU core 33
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Connected all trees
-pluto-prod-yutengl-dev-202-3-0:2511699:2512538 [0] NCCL INFO [Proxy Progress] Device 1 CPU core 99
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO TUNER/PlMulti-thread loading shards:   0% Completed | 0/27 [00:00<?, ?it/s]Multi-thread loading shards:   4% Completed | 1/27 [00:00<00:12,  2.04it/s]Multi-thread loading shards:   7% Completed | 2/27 [00:00<00:11,  2.12it/s]Multi-thread loading shards:  11% Completed | 3/27 [00:01<00:11,  2.02it/s]Multi-thread loading shards:  15% Completed | 4/27 [00:01<00:10,  2.11it/s]Multi-thread loading shards:  19% Completed | 5/27 [00:02<00:11,  1.94it/s]Multi-thread loading shards:  22% Completed | 6/27 [00:03<00:10,  1.94it/s]Multi-thread loading shards:  26% Completed | 7/27 [00:03<00:10,  1.84it/s]Multi-thread loading shards:  30% Completed | 8/27 [00:04<00:10,  1.85it/s]Multi-thread loading shards:  33% Completed | 9/27 [00:04<00:10,  1.78it/s]Multi-thread loading shards:  37% Completed | 10/27 [00:05<00:09,  1.87it/s]Multi-thread loading shards:  41% Completed | 11/27 [00:05<00:08,  1.82it/s]Multi-thread loading shards:  44% Completed | 12/27 [00:06<00:08,  1.83it/s]Multi-thread loading shards:  48% Completed | 13/27 [00:06<00:07,  1.76it/s]Multi-thread loading shards:  52% Completed | 14/27 [00:07<00:07,  1.83it/s]Multi-thread loading shards:  56% Completed | 15/27 [00:07<00:06,  1.86it/s]Multi-thread loading shards:  59% Completed | 16/27 [00:08<00:05,  1.89it/s]Multi-thread loading shards:  63% Completed | 17/27 [00:09<00:05,  1.82it/s]Multi-thread loading shards:  67% Completed | 18/27 [00:09<00:04,  1.83it/s]Multi-thread loading shards:  70% Completed | 19/27 [00:10<00:04,  1.84it/s]Multi-thread loading shards:  74% Completed | 20/27 [00:10<00:03,  1.89it/s]Multi-thread loading shards:  78% Completed | 21/27 [00:11<00:03,  1.83it/s]Multi-thread loading shards:  81% Completed | 22/27 [00:11<00:02,  1.86it/s]Multi-thread loading shards:  85% Completed | 23/27 [00:12<00:02,  1.79it/s]Multi-thread loading shards:  89% Completed | 24/27 [00:12<00:01,  1.83it/s]Multi-thread loading shards:  93% Completed | 25/27 [00:13<00:01,  1.84it/s]Multi-thread loading shards:  96% Completed | 26/27 [00:13<00:00,  1.95it/s]Multi-thread loading shards: 100% Completed | 27/27 [00:14<00:00,  2.49it/s]Multi-thread loading shards: 100% Completed | 27/27 [00:14<00:00,  1.93it/s]
-Multi-thread loading shards:   0% Completed | 0/1 [00:00<?, ?it/s]Multi-thread loading shards: 100% Completed | 1/1 [00:00<00:00,  5.14it/s]Multi-thread loading shards: 100% Completed | 1/1 [00:00<00:00,  5.14it/s]
-  0%|          | 0/36 [00:00<?, ?it/s]Capturing batches (bs=256 avail_mem=30.61 GB):   0%|          | 0/36 [00:00<?, ?it/s]Capturing batches (bs=256 avail_mem=30.61 GB):   3%|▎         | 1/36 [00:01<00:54,  1.56s/it]Capturing batches (bs=248 avail_mem=30.31 GB):   3%|▎         | 1/36 [00:01<00:54,  1.56s/it]Capturing batches (bs=248 avail_mem=30.31 GB):   6%|▌         | 2/36 [00:01<00:25,  1.31it/s]Capturing batches (bs=240 avail_mem=30.30 GB):   6%|▌         | 2/36 [00:01<00:25,  1.31it/s]Capturing batches (bs=240 avail_mem=30.30 GB):   8%|▊         | 3/36 [00:01<00:16,  1.99it/s]Capturing batches (bs=232 avail_mem=30.28 GB):   8%|▊         | 3/36 [00:01<00:16,  1.99it/s]Capturing batches (bs=232 avail_mem=30.28 GB):  11%|█         | 4/36 [00:02<00:12,  2.63it/s]Capturing batches (bs=224 avail_mem=30.26 GB):  11%|█         | 4/36 [00:02<00:12,  2.63it/s]Capturing batches (bs=224 avail_mem=30.26 GB):  14%|█▍        | 5/36 [00:02<00:09,  3.19it/s]Capturing batches (bs=216 avail_mem=30.24 GB):  14%|█▍        | 5/36 [00:02<00:09,  3.19it/s]Capturing batches (bs=216 avail_mem=30.24 GB):  17%|█▋        | 6/36 [00:02<00:08,  3.59it/s]Capturing batches (bs=208 avail_mem=30.22 GB):  17%|█▋        | 6/36 [00:02<00:08,  3.59it/s]Capturing batches (bs=208 avail_mem=30.22 GB):  19%|█▉        | 7/36 [00:02<00:07,  3.92it/s]Capturing batches (bs=200 avail_mem=30.21 GB):  19%|█▉        | 7/36 [00:02<00:07,  3.92it/s]Capturing batches (bs=200 avail_mem=30.21 GB):  22%|██▏       | 8/36 [00:02<00:06,  4.24it/s]Capturing batches (bs=192 avail_mem=30.19 GB):  22%|██▏       | 8/36 [00:02<00:06,  4.24it/s]Capturing batches (bs=192 avail_mem=30.19 GB):  25%|██▌       | 9/36 [00:03<00:06,  4.48it/s]Capturing batches (bs=184 avail_mem=30.17 GB):  25%|██▌       | 9/36 [00:03<00:06,  4.48it/s]Capturing batches (bs=184 avail_mem=30.17 GB):  28%|██▊       | 10/36 [00:03<00:05,  4.70it/s]Capturing batches (bs=176 avail_mem=30.15 GB):  28%|██▊       | 10/36 [00:03<00:05,  4.70it/s]Capturing batches (bs=176 avail_mem=30.15 GB):  31%|███       | 11/36 [00:03<00:05,  4.80it/s]Capturing batches (bs=168 avail_mem=30.13 GB):  31%|███       | 11/36 [00:03<00:05,  4.80it/s]Capturing batches (bs=168 avail_mem=30.13 GB):  33%|███▎      | 12/36 [00:03<00:04,  4.95it/s]Capturing batches (bs=160 avail_mem=30.11 GB):  33%|███▎      | 12/36 [00:03<00:04,  4.95it/s]Capturing batches (bs=160 avail_mem=30.11 GB):  36%|███▌      | 13/36 [00:03<00:04,  4.90it/s]Capturing batches (bs=152 avail_mem=30.09 GB):  36%|███▌      | 13/36 [00:03<00:04,  4.90it/s]Capturing batches (bs=152 avail_mem=30.09 GB):  39%|███▉      | 14/36 [00:04<00:04,  4.98it/s]Capturing batches (bs=144 avail_mem=30.08 GB):  39%|███▉      | 14/36 [00:04<00:04,  4.98it/s]Capturing batches (bs=144 avail_mem=30.08 GB):  42%|████▏     | 15/36 [00:04<00:04,  5.01it/s]Capturing batches (bs=136 avail_mem=30.06 GB):  42%|████▏     | 15/36 [00:04<00:04,  5.01it/s]Capturing batches (bs=136 avail_mem=30.06 GB):  44%|████▍     | 16/36 [00:04<00:04,  4.77it/s]Capturing batches (bs=128 avail_mem=30.04 GB):  44%|████▍     | 16/36 [00:04<00:04,  4.77it/s]Capturing batches (bs=128 avail_mem=30.04 GB):  47%|████▋     | 17/36 [00:04<00:03,  4.79it/s]Capturing batches (bs=120 avail_mem=30.02 GB):  47%|████▋     | 17/36 [00:04<00:03,  4.79it/s]Capturing batches (bs=120 avail_mem=30.02 GB):  50%|█████     | 18/36 [00:04<00:03,  4.84it/s]Capturing batches (bs=112 avail_mem=30.00 GB):  50%|█████     | 18/36 [00:04<00:03,  4.84it/s]Capturing batches (bs=112 avail_mem=30.00 GB):  53%|█████▎    | 19/36 [00:05<00:03,  4.88it/s]Capturing batches (bs=104 avail_mem=29.98 GB):  53%|█████▎    | 19/36 [00:05<00:03,  4.88it/s]Capturing batches (bs=104 avail_mem=29.98 GB):  56%|█████▌    | 20/36 [00:05<00:03,  4.96it/s]Capturing batches (bs=96 avail_mem=29.96 GB):  56%|█████▌    | 20/36 [00:05<00:03,  4.96it/s] Capturing batches (bs=96 avail_mem=29.96 GB):  58%|█████▊    | 21/36 [00:05<00:03,  4.96it/s]Capturing batches (bs=88 avail_mem=29.94 GB):  58%|█████▊    | 21/36 [00:05<00:03,  4.96it/s]Capturing batches (bs=88 avail_mem=29.94 GB):  61%|██████    | 22/36 [00:05<00:02,  5.01it/s]Capturing batches (bs=80 avail_mem=29.92 GB):  61%|██████    | 22/36 [00:05<00:02,  5.01it/s]Capturing batches (bs=80 avail_mem=29.92 GB):  64%|██████▍   | 23/36 [00:05<00:02,  5.01it/s]Capturing batches (bs=72 avail_mem=29.90 GB):  64%|██████▍   | 23/36 [00:05<00:02,  5.01it/s]Capturing batches (bs=72 avail_mem=29.90 GB):  67%|██████▋   | 24/36 [00:06<00:02,  5.04it/s]Capturing batches (bs=64 avail_mem=29.89 GB):  67%|██████▋   | 24/36 [00:06<00:02,  5.04it/s]Capturing batches (bs=64 avail_mem=29.89 GB):  69%|██████▉   | 25/36 [00:06<00:02,  5.07it/s]Capturing batches (bs=56 avail_mem=29.87 GB):  69%|██████▉   | 25/36 [00:06<00:02,  5.07it/s]Capturing batches (bs=56 avail_mem=29.87 GB):  72%|███████▏  | 26/36 [00:06<00:01,  5.06it/s]Capturing batches (bs=48 avail_mem=29.85 GB):  72%|███████▏  | 26/36 [00:06<00:01,  5.06it/s]Capturing batches (bs=48 avail_mem=29.85 GB):  75%|███████▌  | 27/36 [00:06<00:01,  5.13it/s]Capturing batches (bs=40 avail_mem=29.83 GB):  75%|███████▌  | 27/36 [00:06<00:01,  5.13it/s]Capturing batches (bs=40 avail_mem=29.83 GB):  78%|███████▊  | 28/36 [00:06<00:01,  5.15it/s]Capturing batches (bs=32 avail_mem=29.81 GB):  78%|███████▊  | 28/36 [00:06<00:01,  5.15it/s]Capturing batches (bs=32 avail_mem=29.81 GB):  81%|████████  | 29/36 [00:07<00:01,  5.15it/s]Capturing batches (bs=24 avail_mem=29.79 GB):  81%|████████  | 29/36 [00:07<00:01,  5.15it/s]Capturing batches (bs=24 avail_mem=29.79 GB):  83%|████████▎ | 30/36 [00:07<00:01,  5.16it/s]Capturing batches (bs=16 avail_mem=29.78 GB):  83%|████████▎ | 30/36 [00:07<00:01,  5.16it/s]Capturing batches (bs=16 avail_mem=29.78 GB):  86%|████████▌ | 31/36 [00:07<00:00,  5.09it/s]Capturing batches (bs=12 avail_mem=29.76 GB):  86%|████████▌ | 31/36 [00:07<00:00,  5.09it/s]Capturing batches (bs=12 avail_mem=29.76 GB):  89%|████████▉ | 32/36 [00:07<00:00,  5.16it/s]Capturing batches (bs=8 avail_mem=29.74 GB):  89%|████████▉ | 32/36 [00:07<00:00,  5.16it/s] Capturing batches (bs=8 avail_mem=29.74 GB):  92%|█████████▏| 33/36 [00:07<00:00,  5.16it/s]Capturing batches (bs=4 avail_mem=29.72 GB):  92%|█████████▏| 33/36 [00:07<00:00,  5.16it/s]Capturing batches (bs=4 avail_mem=29.72 GB):  94%|█████████▍| 34/36 [00:08<00:00,  5.18it/s]Capturing batches (bs=2 avail_mem=29.70 GB):  94%|█████████▍| 34/36 [00:08<00:00,  5.18it/s]Capturing batches (bs=2 avail_mem=29.70 GB):  97%|█████████▋| 35/36 [00:08<00:00,  5.22it/s]Capturing batches (bs=1 avail_mem=29.68 GB):  97%|█████████▋| 35/36 [00:08<00:00,  5.22it/s]Capturing batches (bs=1 avail_mem=29.68 GB): 100%|██████████| 36/36 [00:08<00:00,  5.21it/s]Capturing batches (bs=1 avail_mem=29.68 GB): 100%|██████████| 36/36 [00:08<00:00,  4.25it/s]
-2-3-0:2511634:2511634 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Connected all trees
-pluto-prod-yutengl-dev-202-3-0:2511634:2512539 [0] NCCL INFO [Proxy Progress] Device 0 CPU core 133
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO TUNER/Plugin: Using nccl_ofi_tuner (v3)
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/OFI Region base Tuner is chosen for platform: p5.48xlarge
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/OFI Region Tuner init (platform 0): comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO NET/OFI Tuner init: comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Symmetric memory is not supported. cuMemEnable 0, globalGinSupport 0, globalNicFused 0 cuMemGdrSupport 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO CC Off, workFifoBytes 1048576
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO ncclCommInitRank comm 0x55b9f406bbf0 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 64000 commId 0x4b86653f6bb6a8ea - Init COMPLETE
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Init timings - ncclCommInitRank: rank 0 nranks 2 total 0.44 (kernels 0.31, alloc 0.04, bootstrap 0.00, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.06, rest 0.00)
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Comm config Blocking set to 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO [Rank 0] ncclCommInitRankConfig comm 0x55ba359695e0 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 64000 commId 0xccb511b69a199da7 - Init START
-pluto-prod-yutengl-dev-202-3-0:2511634:2511ugin: Could not find: libnccl-tuner.so
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO TUNER/Plugin: Using nccl_ofi_tuner (v3)
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/OFI Region base Tuner is chosen for platform: p5.48xlarge
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/OFI Region Tuner init (platform 0): comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO NET/OFI Tuner init: comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Symmetric memory is not supported. cuMemEnable 0, globalGinSupport 0, globalNicFused 0 cuMemGdrSupport 1
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO ncclCommInitRank comm 0x55aeabc5fa10 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 75000 commId 0x4b86653f6bb6a8ea - Init COMPLETE
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.44 (kernels 0.31, alloc 0.04, bootstrap 0.00, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.06, rest 0.00)
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Comm config Blocking set to 1
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO [Rank 1] ncclCommInitRankConfig comm 0x55aeed566040 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 75000 commId 0xccb511b69a199da7 - Init START
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Bootstrap timings total 0.000733 (create 0.000043, send 0.000161, recv 0.000229, ring 0.000027, delay 0.000000)
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO MNNVL busId 0x75000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO comm 0x55aeed566040 rank 1 nRanks 2 nNodes 1 localRanks 2 localRank 1 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3] -1/-1/-1->1->0 [4] -1/-1/-1->1->0 [5] -1/-1/-1->1->0 [6] 0/-1/-1->1->-1 [7] 0/-1/-1->1->-1 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] -1/-1/-1->1->0 [13] -1/-1/-1->1->0 [14] -1/-1/-1->1->0 [15] -1/-1/-1->1->0 [16] -1/-1/-1->1->0 [17] -1/-1/-1->1->0 [18] 0/-1/-1->1->-1 [19] 0/-1/-1->1->-1 [20] 0/-1/-1->1->-1 [21] 0/-1/-1->1->-1 [22] 0/-1/-1->1->-1 [23] 0/-1/-1->1->-1
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2511699:2513515 [0] NCCL INFO [Proxy Service] Device 1 CPU core 101
-pluto-prod-yutengl-dev-202-3-0:2511699:2513517 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 31
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511699:2511699 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/IPC
-p634 [0] NCCL INFO Bootstrap timings total 0.000818 (create 0.000053, send 0.000235, recv 0.000333, ring 0.000027, delay 0.000000)
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO MNNVL busId 0x64000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO comm 0x55ba359695e0 rank 0 nRanks 2 nNodes 1 localRanks 2 localRank 0 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 00/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 01/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 02/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 03/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 04/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 05/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 06/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 07/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 08/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 09/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 10/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 11/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 12/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 13/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 14/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 15/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 16/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 17/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 18/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 19/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 20/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 21/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 22/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 23/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] -1/-1/-1->0->1 [7] -1/-1/-1->0->1 [8] -1/-1/-1->0->1 [9] -1/-1/-1->0->1 [10] -1/-1/-1->0->1 [11] -1/-1/-1->0->1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] -1/-1/-1->0->1 [19] -1/-1/-1->0->1 [20] -1/-1/-1->0->1 [21] -1/-1/-1->0->1 [22] -1/-1/-1->0->1 [23] -1/-1/-1->0->1
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2511634:2513516 [0] NCCL INFO [Proxy Service] Device 0 CPU core 138
-pluto-prod-yutengl-dev-202-3-0:2511634:2513518 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 23
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2511634:2511634 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengPASSED
-tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[video] Failed to import mooncake: No module named 'mooncake'. MooncakeRelay will not work. Install with: pip install mooncake-transfer-engine
-Failed to import nixl: No module named 'nixl'. NixlRelay will not work.
-Failed to import torchada: No module named 'torchada'. MUSA platform compatibility will not work.
-libfabric:2514248:1789540922::core:core:cuda_gdrcopy_hmem_init():192<warn> gdrcopy_dl_hmem_init failed!
-libfabric:2514183:1789540922::core:core:cuda_gdrcopy_hmem_init():192<warn> gdrcopy_dl_hmem_init failed!
-libfabric:2514248:1789540922::core:core:fi_getinfo_():1392<warn> fi_getinfo: provider efa output empty list
-libfabric:2514183:1789540922::core:core:fi_getinfo_():1392<warn> fi_getinfo: provider efa output empty list
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO cudaDriverVersion 13000
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Bootstrap: Using eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NCCL version 2.29.7+cuda13.2
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NCCL git version stable b81d6a5a3
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/Plugin: Loaded net plugin Libfabric (v10)
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Successfully loaded external network plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/OFI Initializing aws-ofi-nccl 1.16.1
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/OFI Using Libfabric version 2.1
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/OFI Using CUDA driver version 13000 with runtime 12080
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/OFI Configuring AWS-specific options
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/OFI Internode latency set at 75.0 us
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/OFI Using transport protocol RDMA (platform set)
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/OFI No eligible providers were found
-
-[2026-09-15 23:42:02] pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):215 NCCL WARN NET/OFI Failed to initialize rdma protocol
-
-[2026-09-15 23:42:02] pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):352 NCCL WARN NET/OFI aws-ofi-nccl initialization failed
-
-[2026-09-15 23:42:02] pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] ncclResult_t nccl_net_ofi_init_v6(ncclDebugLogger_t):166 NCCL WARN NET/OFI Initializing plugin failed
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO plugin/net/net_v10.cc:82 -> 2
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Failed to initialize NET plugin Libfabric
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/IB : No device found.
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/IB : Using [RO]; OOB eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Failed to initialize NET plugin IB
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/Socket : Using [0]eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Successfully loaded external gin plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO [Rank 1] ncclCommInitRank comm 0x560cf225b900 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 75000 commId 0x2c2473461052f87a - Init START
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO RAS client listening socket at ::1<28028>
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Bootstrap timings total 0.004129 (create 0.000071, send 0.000254, recv 0.002924, ring 0.000041, delay 0.000001)
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NCCL_CUMEM_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO MNNVL busId 0x75000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Bootstrap: Using eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO cudaDriverVersion 13000
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NCCL version 2.29.7+cuda13.2
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NCCL git version stable b81d6a5a3
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/Plugin: Loaded net plugin Libfabric (v10)
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Successfully loaded external network plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/OFI Initializing aws-ofi-nccl 1.16.1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/OFI Using Libfabric version 2.1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/OFI Using CUDA driver version 13000 with runtime 12080
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/OFI Configuring AWS-specific options
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/OFI Internode latency set at 75.0 us
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/OFI Using transport protocol RDMA (platform set)
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/OFI No eligible providers were found
-
-[2026-09-15 23:42:02] pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):215 NCCL WARN NET/OFI Failed to initialize rdma protocol
-
-[2026-09-15 23:42:02] pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] int nccl_net_ofi_create_plugin(nccl_net_ofi_plugin_t**):352 NCCL WARN NET/OFI aws-ofi-nccl initialization failed
-
-[2026-09-15 23:42:02] pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] ncclResult_t nccl_net_ofi_init_v6(ncclDebugLogger_t):166 NCCL WARN NET/OFI Initializing plugin failed
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO plugin/net/net_v10.cc:82 -> 2
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Failed to initialize NET plugin Libfabric
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/IB : No device found.
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/IB : Using [RO]; OOB eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Failed to initialize NET plugin IB
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/Socket : Using [0]eth0:10.91.207.160<0>
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Successfully loaded external gin plugin /opt/aws-ofi-nccl/install/lib/libnccl-net.so
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO [Rank 0] ncclCommInitRank comm 0x558a63d69a30 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 64000 commId 0x2c2473461052f87a - Init START
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO RAS client listening socket at ::1<28028>
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Bootstrap timings total 0.001263 (create 0.000074, send 0.000134, recv 0.000398, ring 0.000082, delay 0.000001)
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NCCL_CUMEM_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO MNNVL busId 0x64000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NCCL_NVLS_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO comm 0x558a63d69a30 rank 0 nRanks 2 nNodes 1 localRanks 2 localRank 0 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 00/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 01/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 02/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 03/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 04/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 05/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 06/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 07/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 08/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 09/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 10/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 11/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 12/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 13/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 14/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 15/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 16/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 17/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 18/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 19/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 20/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 21/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 22/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 23/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] -1/-1/-1->0->1 [7] -1/-1/-1->0->1 [8] -1/-1/-1->0->1 [9] -1/-1/-1->0->1 [10] -1/-1/-1->0->1 [11] -1/-1/-1->0->1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] -1/-1/-1->0->1 [19] -1/-1/-1->0->1 [20] -1/-1/-1->0->1 [21] -1/-1/-1->0->1 [22] -1/-1/-1->0->1 [23] -1/-1/-1->0->1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2515033 [0] NCCL INFO [Proxy Service] Device 0 CPU core 35
-pluto-prod-yutengl-dev-202-3-0:2514183:2515035 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 41
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-20= 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NCCL_NVLS_ENABLE set by environment to 0.
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO comm 0x560cf225b900 rank 1 nRanks 2 nNodes 1 localRanks 2 localRank 1 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3] -1/-1/-1->1->0 [4] -1/-1/-1->1->0 [5] -1/-1/-1->1->0 [6] 0/-1/-1->1->-1 [7] 0/-1/-1->1->-1 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] -1/-1/-1->1->0 [13] -1/-1/-1->1->0 [14] -1/-1/-1->1->0 [15] -1/-1/-1->1->0 [16] -1/-1/-1->1->0 [17] -1/-1/-1->1->0 [18] 0/-1/-1->1->-1 [19] 0/-1/-1->1->-1 [20] 0/-1/-1->1->-1 [21] 0/-1/-1->1->-1 [22] 0/-1/-1->1->-1 [23] 0/-1/-1->1->-1
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2514248:2515036 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 17
-pluto-prod-yutengl-dev-202-3-0:2514248:2515034 [0] NCCL INFO [Proxy Service] Device 1 CPU core 31
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Connected all trees
-pluto-prod-yutengl-dev-202-3-0:2514248:2515037 [0] NCCL INFO [Proxy Progress] Device 1 CPU core 103
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO TUNER/PlMulti-thread loading shards:   0% Completed | 0/27 [00:00<?, ?it/s]Multi-thread loading shards:   4% Completed | 1/27 [00:00<00:12,  2.11it/s]Multi-thread loading shards:   7% Completed | 2/27 [00:00<00:11,  2.16it/s]Multi-thread loading shards:  11% Completed | 3/27 [00:01<00:11,  2.05it/s]Multi-thread loading shards:  15% Completed | 4/27 [00:01<00:10,  2.14it/s]Multi-thread loading shards:  19% Completed | 5/27 [00:02<00:11,  1.96it/s]Multi-thread loading shards:  22% Completed | 6/27 [00:02<00:10,  1.98it/s]Multi-thread loading shards:  26% Completed | 7/27 [00:03<00:10,  1.87it/s]Multi-thread loading shards:  30% Completed | 8/27 [00:04<00:10,  1.89it/s]Multi-thread loading shards:  33% Completed | 9/27 [00:04<00:09,  1.80it/s]Multi-thread loading shards:  37% Completed | 10/27 [00:05<00:08,  1.90it/s]Multi-thread loading shards:  41% Completed | 11/27 [00:05<00:08,  1.83it/s]Multi-thread loading shards:  44% Completed | 12/27 [00:06<00:08,  1.86it/s]Multi-thread loading shards:  48% Completed | 13/27 [00:06<00:07,  1.79it/s]Multi-thread loading shards:  52% Completed | 14/27 [00:07<00:06,  1.89it/s]Multi-thread loading shards:  56% Completed | 15/27 [00:07<00:06,  1.92it/s]Multi-thread loading shards:  59% Completed | 16/27 [00:08<00:05,  1.95it/s]Multi-thread loading shards:  63% Completed | 17/27 [00:08<00:05,  1.84it/s]Multi-thread loading shards:  67% Completed | 18/27 [00:09<00:04,  1.86it/s]Multi-thread loading shards:  70% Completed | 19/27 [00:10<00:04,  1.85it/s]Multi-thread loading shards:  74% Completed | 20/27 [00:10<00:03,  1.89it/s]Multi-thread loading shards:  78% Completed | 21/27 [00:11<00:03,  1.84it/s]Multi-thread loading shards:  81% Completed | 22/27 [00:11<00:02,  1.87it/s]Multi-thread loading shards:  85% Completed | 23/27 [00:12<00:02,  1.79it/s]Multi-thread loading shards:  89% Completed | 24/27 [00:12<00:01,  1.82it/s]Multi-thread loading shards:  93% Completed | 25/27 [00:13<00:01,  1.82it/s]Multi-thread loading shards:  96% Completed | 26/27 [00:13<00:00,  1.97it/s]Multi-thread loading shards: 100% Completed | 27/27 [00:13<00:00,  2.51it/s]Multi-thread loading shards: 100% Completed | 27/27 [00:13<00:00,  1.95it/s]
-Multi-thread loading shards:   0% Completed | 0/1 [00:00<?, ?it/s]Multi-thread loading shards: 100% Completed | 1/1 [00:00<00:00,  4.95it/s]Multi-thread loading shards: 100% Completed | 1/1 [00:00<00:00,  4.95it/s]
-  0%|          | 0/36 [00:00<?, ?it/s]Capturing batches (bs=256 avail_mem=30.61 GB):   0%|          | 0/36 [00:00<?, ?it/s]Capturing batches (bs=256 avail_mem=30.61 GB):   3%|▎         | 1/36 [00:01<00:56,  1.63s/it]Capturing batches (bs=248 avail_mem=30.31 GB):   3%|▎         | 1/36 [00:01<00:56,  1.63s/it]Capturing batches (bs=248 avail_mem=30.31 GB):   6%|▌         | 2/36 [00:01<00:26,  1.27it/s]Capturing batches (bs=240 avail_mem=30.30 GB):   6%|▌         | 2/36 [00:01<00:26,  1.27it/s]Capturing batches (bs=240 avail_mem=30.30 GB):   8%|▊         | 3/36 [00:02<00:17,  1.92it/s]Capturing batches (bs=232 avail_mem=30.28 GB):   8%|▊         | 3/36 [00:02<00:17,  1.92it/s]Capturing batches (bs=232 avail_mem=30.28 GB):  11%|█         | 4/36 [00:02<00:12,  2.55it/s]Capturing batches (bs=224 avail_mem=30.26 GB):  11%|█         | 4/36 [00:02<00:12,  2.55it/s]Capturing batches (bs=224 avail_mem=30.26 GB):  14%|█▍        | 5/36 [00:02<00:09,  3.11it/s]Capturing batches (bs=216 avail_mem=30.24 GB):  14%|█▍        | 5/36 [00:02<00:09,  3.11it/s]Capturing batches (bs=216 avail_mem=30.24 GB):  17%|█▋        | 6/36 [00:02<00:08,  3.59it/s]Capturing batches (bs=208 avail_mem=30.22 GB):  17%|█▋        | 6/36 [00:02<00:08,  3.59it/s]Capturing batches (bs=208 avail_mem=30.22 GB):  19%|█▉        | 7/36 [00:02<00:07,  3.96it/s]Capturing batches (bs=200 avail_mem=30.21 GB):  19%|█▉        | 7/36 [00:02<00:07,  3.96it/s]Capturing batches (bs=200 avail_mem=30.21 GB):  22%|██▏       | 8/36 [00:03<00:06,  4.29it/s]Capturing batches (bs=192 avail_mem=30.19 GB):  22%|██▏       | 8/36 [00:03<00:06,  4.29it/s]Capturing batches (bs=192 avail_mem=30.19 GB):  25%|██▌       | 9/36 [00:03<00:05,  4.53it/s]Capturing batches (bs=184 avail_mem=30.17 GB):  25%|██▌       | 9/36 [00:03<00:05,  4.53it/s]Capturing batches (bs=184 avail_mem=30.17 GB):  28%|██▊       | 10/36 [00:03<00:05,  4.73it/s]Capturing batches (bs=176 avail_mem=30.15 GB):  28%|██▊       | 10/36 [00:03<00:05,  4.73it/s]Capturing batches (bs=176 avail_mem=30.15 GB):  31%|███       | 11/36 [00:03<00:05,  4.86it/s]Capturing batches (bs=168 avail_mem=30.13 GB):  31%|███       | 11/36 [00:03<00:05,  4.86it/s]Capturing batches (bs=168 avail_mem=30.13 GB):  33%|███▎      | 12/36 [00:03<00:04,  4.94it/s]Capturing batches (bs=160 avail_mem=30.11 GB):  33%|███▎      | 12/36 [00:03<00:04,  4.94it/s]Capturing batches (bs=160 avail_mem=30.11 GB):  36%|███▌      | 13/36 [00:03<00:04,  4.88it/s]Capturing batches (bs=152 avail_mem=30.09 GB):  36%|███▌      | 13/36 [00:03<00:04,  4.88it/s]Capturing batches (bs=152 avail_mem=30.09 GB):  39%|███▉      | 14/36 [00:04<00:04,  4.71it/s]Capturing batches (bs=144 avail_mem=30.08 GB):  39%|███▉      | 14/36 [00:04<00:04,  4.71it/s]Capturing batches (bs=144 avail_mem=30.08 GB):  42%|████▏     | 15/36 [00:04<00:04,  4.73it/s]Capturing batches (bs=136 avail_mem=30.06 GB):  42%|████▏     | 15/36 [00:04<00:04,  4.73it/s]Capturing batches (bs=136 avail_mem=30.06 GB):  44%|████▍     | 16/36 [00:04<00:04,  4.80it/s]Capturing batches (bs=128 avail_mem=30.04 GB):  44%|████▍     | 16/36 [00:04<00:04,  4.80it/s]Capturing batches (bs=128 avail_mem=30.04 GB):  47%|████▋     | 17/36 [00:04<00:03,  4.84it/s]Capturing batches (bs=120 avail_mem=30.02 GB):  47%|████▋     | 17/36 [00:04<00:03,  4.84it/s]Capturing batches (bs=120 avail_mem=30.02 GB):  50%|█████     | 18/36 [00:05<00:03,  4.95it/s]Capturing batches (bs=112 avail_mem=30.00 GB):  50%|█████     | 18/36 [00:05<00:03,  4.95it/s]Capturing batches (bs=112 avail_mem=30.00 GB):  53%|█████▎    | 19/36 [00:05<00:03,  5.05it/s]Capturing batches (bs=104 avail_mem=29.98 GB):  53%|█████▎    | 19/36 [00:05<00:03,  5.05it/s]Capturing batches (bs=104 avail_mem=29.98 GB):  56%|█████▌    | 20/36 [00:05<00:03,  5.13it/s]Capturing batches (bs=96 avail_mem=29.96 GB):  56%|█████▌    | 20/36 [00:05<00:03,  5.13it/s] Capturing batches (bs=96 avail_mem=29.96 GB):  58%|█████▊    | 21/36 [00:05<00:02,  5.17it/s]Capturing batches (bs=88 avail_mem=29.94 GB):  58%|█████▊    | 21/36 [00:05<00:02,  5.17it/s]Capturing batches (bs=88 avail_mem=29.94 GB):  61%|██████    | 22/36 [00:05<00:02,  5.19it/s]Capturing batches (bs=80 avail_mem=29.92 GB):  61%|██████    | 22/36 [00:05<00:02,  5.19it/s]Capturing batches (bs=80 avail_mem=29.92 GB):  64%|██████▍   | 23/36 [00:05<00:02,  5.21it/s]Capturing batches (bs=72 avail_mem=29.90 GB):  64%|██████▍   | 23/36 [00:05<00:02,  5.21it/s]Capturing batches (bs=72 avail_mem=29.90 GB):  67%|██████▋   | 24/36 [00:06<00:02,  5.24it/s]Capturing batches (bs=64 avail_mem=29.89 GB):  67%|██████▋   | 24/36 [00:06<00:02,  5.24it/s]Capturing batches (bs=64 avail_mem=29.89 GB):  69%|██████▉   | 25/36 [00:06<00:02,  5.26it/s]Capturing batches (bs=56 avail_mem=29.87 GB):  69%|██████▉   | 25/36 [00:06<00:02,  5.26it/s]Capturing batches (bs=56 avail_mem=29.87 GB):  72%|███████▏  | 26/36 [00:06<00:01,  5.26it/s]Capturing batches (bs=48 avail_mem=29.85 GB):  72%|███████▏  | 26/36 [00:06<00:01,  5.26it/s]Capturing batches (bs=48 avail_mem=29.85 GB):  75%|███████▌  | 27/36 [00:06<00:01,  5.26it/s]Capturing batches (bs=40 avail_mem=29.83 GB):  75%|███████▌  | 27/36 [00:06<00:01,  5.26it/s]Capturing batches (bs=40 avail_mem=29.83 GB):  78%|███████▊  | 28/36 [00:06<00:01,  5.27it/s]Capturing batches (bs=32 avail_mem=29.81 GB):  78%|███████▊  | 28/36 [00:06<00:01,  5.27it/s]Capturing batches (bs=32 avail_mem=29.81 GB):  81%|████████  | 29/36 [00:07<00:01,  5.23it/s]Capturing batches (bs=24 avail_mem=29.79 GB):  81%|████████  | 29/36 [00:07<00:01,  5.23it/s]Capturing batches (bs=24 avail_mem=29.79 GB):  83%|████████▎ | 30/36 [00:07<00:01,  5.21it/s]Capturing batches (bs=16 avail_mem=29.78 GB):  83%|████████▎ | 30/36 [00:07<00:01,  5.21it/s]Capturing batches (bs=16 avail_mem=29.78 GB):  86%|████████▌ | 31/36 [00:07<00:00,  5.16it/s]Capturing batches (bs=12 avail_mem=29.76 GB):  86%|████████▌ | 31/36 [00:07<00:00,  5.16it/s]Capturing batches (bs=12 avail_mem=29.76 GB):  89%|████████▉ | 32/36 [00:07<00:00,  5.18it/s]Capturing batches (bs=8 avail_mem=29.74 GB):  89%|████████▉ | 32/36 [00:07<00:00,  5.18it/s] Capturing batches (bs=8 avail_mem=29.74 GB):  92%|█████████▏| 33/36 [00:07<00:00,  5.09it/s]Capturing batches (bs=4 avail_mem=29.72 GB):  92%|█████████▏| 33/36 [00:07<00:00,  5.09it/s]Capturing batches (bs=4 avail_mem=29.72 GB):  94%|█████████▍| 34/36 [00:08<00:00,  5.11it/s]Capturing batches (bs=2 avail_mem=29.70 GB):  94%|█████████▍| 34/36 [00:08<00:00,  5.11it/s]Capturing batches (bs=2 avail_mem=29.70 GB):  97%|█████████▋| 35/36 [00:08<00:00,  5.21it/s]Capturing batches (bs=1 avail_mem=29.68 GB):  97%|█████████▋| 35/36 [00:08<00:00,  5.21it/s]Capturing batches (bs=1 avail_mem=29.68 GB): 100%|██████████| 36/36 [00:08<00:00,  5.24it/s]Capturing batches (bs=1 avail_mem=29.68 GB): 100%|██████████| 36/36 [00:08<00:00,  4.25it/s]
-2-3-0:2514183:2514183 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Connected all trees
-pluto-prod-yutengl-dev-202-3-0:2514183:2515038 [0] NCCL INFO [Proxy Progress] Device 0 CPU core 41
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO TUNER/Plugin: Using nccl_ofi_tuner (v3)
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/OFI Region base Tuner is chosen for platform: p5.48xlarge
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/OFI Region Tuner init (platform 0): comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO NET/OFI Tuner init: comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Symmetric memory is not supported. cuMemEnable 0, globalGinSupport 0, globalNicFused 0 cuMemGdrSupport 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO CC Off, workFifoBytes 1048576
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO ncclCommInitRank comm 0x558a63d69a30 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 64000 commId 0x2c2473461052f87a - Init COMPLETE
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Init timings - ncclCommInitRank: rank 0 nranks 2 total 0.43 (kernels 0.31, alloc 0.03, bootstrap 0.00, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.06, rest 0.00)
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Comm config Blocking set to 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO [Rank 0] ncclCommInitRankConfig comm 0x558aa56a9b80 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 64000 commId 0xbe16c46eb89ee9f4 - Init START
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Bootstrap timings total 0.000940 (create 0.000054, send 0.000136, recv 0.000423, ring 0.000028, delay 0.000000)
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO MNNVL busId 0x64000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO comm 0x558aa56a9b80 rank 0 nRanks 2 nNodes 1 localRanks 2 localRank 0 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 00/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 01/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 02/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 03/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 04/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 05/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 06/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 07/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 08/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 09/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 10/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 11/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 12/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 13/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 14/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 15/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 16/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 17/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 18/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 19/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 20/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 21/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 22/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 23/24 : 0 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] -1/-1/-1->0->1 [7] -1/-1/-1->0->1 [8] -1/-1/-1->0->1 [9] -1/-1/-1->0->1 [10] -1/-1/-1->0->1 [11] -1/-1/-1->0->1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] -1/-1/-1->0->1 [19] -1/-1/-1->0->1 [20] -1/-1/-1->0->1 [21] -1/-1/-1->0->1 [22] -1/-1/-1->0->1 [23] -1/-1/-1->0->1
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2514183:2515895 [0] NCCL INFO [Proxy Service] Device 0 CPU core 110
-pluto-prod-yutengl-dev-202-3-0:2514183:2515898 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 115
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514183:2514183 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/IPC
-pluto-prod-yutengugin: Could not find: libnccl-tuner.so
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO TUNER/Plugin: Using nccl_ofi_tuner (v3)
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/OFI Region base Tuner is chosen for platform: p5.48xlarge
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/OFI Region Tuner init (platform 0): comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO NET/OFI Tuner init: comm with 2 ranks and 1 nodes.
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Symmetric memory is not supported. cuMemEnable 0, globalGinSupport 0, globalNicFused 0 cuMemGdrSupport 1
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO ncclCommInitRank comm 0x560cf225b900 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 75000 commId 0x2c2473461052f87a - Init COMPLETE
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.43 (kernels 0.31, alloc 0.03, bootstrap 0.00, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.06, rest 0.00)
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Comm config Blocking set to 1
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Initialized NET plugin Socket
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Assigned NET plugin Socket to comm
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Failed to initialize any GIN plugin
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Using network Socket
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO [Rank 1] ncclCommInitRankConfig comm 0x560d33b87d40 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 75000 commId 0xbe16c46eb89ee9f4 - Init START
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Bootstrap timings total 0.000707 (create 0.000043, send 0.000107, recv 0.000345, ring 0.000030, delay 0.000000)
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO MNNVL busId 0x75000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x0
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-47,96-143).
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO comm 0x560d33b87d40 rank 1 nRanks 2 nNodes 1 localRanks 2 localRank 1 MNNVL 0
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3] -1/-1/-1->1->0 [4] -1/-1/-1->1->0 [5] -1/-1/-1->1->0 [6] 0/-1/-1->1->-1 [7] 0/-1/-1->1->-1 [8] 0/-1/-1->1->-1 [9] 0/-1/-1->1->-1 [10] 0/-1/-1->1->-1 [11] 0/-1/-1->1->-1 [12] -1/-1/-1->1->0 [13] -1/-1/-1->1->0 [14] -1/-1/-1->1->0 [15] -1/-1/-1->1->0 [16] -1/-1/-1->1->0 [17] -1/-1/-1->1->0 [18] 0/-1/-1->1->-1 [19] 0/-1/-1->1->-1 [20] 0/-1/-1->1->-1 [21] 0/-1/-1->1->-1 [22] 0/-1/-1->1->-1 [23] 0/-1/-1->1->-1
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO P2P Chunksize set to 524288
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
-pluto-prod-yutengl-dev-202-3-0:2514248:2515897 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 115
-pluto-prod-yutengl-dev-202-3-0:2514248:2515896 [0] NCCL INFO [Proxy Service] Device 1 CPU core 110
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/IPC
-pluto-prod-yutengl-dev-202-3-0:2514248:2514248 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/IPC
-PASSED
-
-- generated xml file: /home/colligo/sglang-wiki/repos/sglang-omni/results/cosmos3-super/2gpu/reasoner-reference.xml -
-============================= slowest 20 durations =============================
-72.89s call     tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[text]
-69.18s call     tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[image]
-66.65s call     tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[video]
-2.17s setup    tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[text]
-0.00s setup    tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[image]
-0.00s teardown tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[text]
-0.00s teardown tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[video]
-0.00s setup    tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[video]
-0.00s teardown tests/integration/cosmos3/test_super_gpu.py::test_super_reasoner[image]
-======================== 3 passed in 210.93s (0:03:30) =========================
-/usr/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
-/usr/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 3 leaked shared_memory objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '

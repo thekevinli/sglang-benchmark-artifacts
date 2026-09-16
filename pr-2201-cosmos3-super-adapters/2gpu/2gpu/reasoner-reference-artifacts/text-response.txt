@@ -1,4 +1,0 @@
-<think>
-Okay, the user is asking "What is two plus two?" and wants a short answer. Let me think. The question is straightforward, but maybe they're testing if I can give a concise response. The answer is obviously 4. But wait, should I consider any context? Like, sometimes people ask this to check if the AI is functioning correctly. But the user didn't provide any additional context, so I should just answer directly. Keep it simple and to the point. No need for explanations unless asked. So the answer is 4.
-</think>
-4

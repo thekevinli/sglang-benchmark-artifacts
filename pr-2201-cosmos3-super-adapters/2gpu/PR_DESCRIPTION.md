@@ -9,31 +9,31 @@ Native runtimes:
 - Generation smoke: `sglang==0.5.19`, `flashinfer-python==0.6.18`.
 - Reasoner: official SGLang commit `4e9e407d3720045d59cae185c05f33649f4e544e`, `sglang-kernel==0.4.7`, `flashinfer-python==0.6.18`. The released 0.5.19 SRT does not register `Cosmos3ForConditionalGeneration`.
 
-### Feature coverage
+### Reasoner accuracy
 
-| Config | Feature | Result | Validation |
-| --- | --- | ---: | --- |
-| generation | T2I | PASS | nonconstant 832x480 PNG; fresh-owner restart also passed |
-| generation | T2V | PASS | decoded 17/17 frames at 832x480 |
-| generation | I2V | PASS | decoded 17/17 frames at 832x480 |
-| generation | V2V continuation | PASS | decoded 17/17 frames at 832x480 |
-| generation | sound | PASS | 49-frame MP4, stereo AAC present, nonzero audio energy, duration within 0.15s |
-| generation | policy | PASS | finite `[16, 9]` action output |
-| generation | inverse dynamics | PASS | finite `[16, 9]` action output |
-| generation | forward dynamics | PASS | decoded 17/17 frames at 832x480 |
-| reasoner | text | PASS | response ends in reference answer `4` |
-| reasoner | image | PASS | response contains reference color `red` |
-| reasoner | video | PASS | response identifies `red` before `blue` |
+Omni vs. ground truth, 50 CI samples per benchmark, TP=2. Scored by the shared
+`benchmarks/` harness (`parse_multi_choice_response` for the multiple-choice
+sets, numeric match for GSM8K); all runs had 0 failed requests.
 
-Generation: 8/8 passed. Reasoner: 3/3 passed. All cases assert that their owned stage/native process trees are gone after shutdown.
+| Evaluation | Sample source | Omni |
+| --- | --- | ---: |
+| MMMU | `mmmu-ci-50` | 30/50 (60%) |
+| MMMU, strict scoring | Same 50 CI examples; random-fallback answers count as incorrect | 30/50 (60%) |
+| VideoMME | `videomme-ci-50` | 28/50 (56%) |
+| GSM8K | First 50 of `openai/gsm8k` (`main`/`test`) | 47/50 (94%) |
 
-Reasoner reference responses:
+MMMU shows ~2-sample run-to-run variance from concurrency-8 batching (temperature
+0 is not fully deterministic). Raw per-sample records and the summary are under
+`reasoner-accuracy/`; reproduce with the commands below.
 
-| Input | Expected | Actual |
-| --- | --- | --- |
-| `What is two plus two?` | `4` | `4` after the model's reasoning block |
-| solid-red image | `red` | `The dominant color in the image is red.` |
-| red frames followed by blue frames | red to blue | `The color transitions from red to blue.` |
+### Functional coverage
+
+All generation modes (T2I, T2V, I2V, V2V continuation, sound, policy, inverse
+and forward dynamics) and reasoner modes (text, image, video) pass the opt-in GPU
+smoke suite `tests/integration/cosmos3/test_super_gpu.py`, which also asserts each
+owned stage/native process tree is gone after shutdown. Run it via
+`run_h100_validation.sh` (see Reproduction). The generation quality benchmark
+below is the full-resolution evidence.
 
 ### Native lifecycle
 
@@ -50,7 +50,15 @@ The Python resource tracker still warned about 6 semaphore names and 3 shared-me
 
 ### Two-GPU memory fit
 
-The unmodified multi-GPU generation setup loaded the 117.85 GB transformer, but the first T2I request OOMed during component transition: GPU 0 had 371 MiB free and failed a 500 MiB allocation; GPU 1 had 46.56 MiB free and failed an 80 MiB allocation.
+This is a real topology constraint, not an un-freed GPU: the stock generation
+config targets **4 GPUs** (`runtime_gpu_ids: [0, 1, 2, 3]`, `hsdp_shard_dim: 4`),
+and the model itself **declares a 120 GiB threshold for keeping its DiT
+resident** while excluding the DiT from automatic layerwise offload. On the
+2-GPU node the run started with **78.7 GiB free per GPU** (GPUs were idle), yet
+the unmodified setup kept the 117.85 GB transformer resident and OOMed during
+the first T2I component transition: GPU 0 had 371 MiB free and failed a 500 MiB
+allocation; GPU 1 had 46.56 MiB free and failed an 80 MiB allocation. So serving
+Super on 2x80GB requires explicit DiT layerwise offload.
 
 The complete generation matrix and benchmarks pass with this explicitly labeled 2-GPU fallback:
 
@@ -65,7 +73,7 @@ The complete generation matrix and benchmarks pass with this explicitly labeled 
 
 The effective topology is FSDP/HSDP shard dimension 2 plus native auto-CFG parallel degree 2. Layerwise setup reports 2/128 transformer layers resident and approximately 2.77 GB transformer VRAM, with the rest checkpoint-mapped/host-backed. This result should not be presented as evidence that the stock 4-GPU YAML is wrong; it only establishes that stock residency does not fit 2x80GB.
 
-### Generation examples
+### Generation quality benchmark
 
 These are branch outputs from the checkpoint's official structured prompts and
 quality recipe: 1280x720, 189 frames at 24 fps (7.875 seconds), 35 steps, CFG 6,
@@ -100,27 +108,40 @@ shows the robot holding the jar, pouring into the cup, and returning upright.
 
 ### Reproduction
 
-No Hugging Face token is stored in any script.
+No Hugging Face token is stored in any script. The checkpoint is gated and the
+serving path auto-downloads the pinned revision on first launch
+(`resolve_checkpoint` → `snapshot_download`), so no separate download step is
+needed — just export `HF_TOKEN` in the environment.
 
 ```bash
-# Resumable, commit-pinned model download; set HF_TOKEN in the environment.
-results/cosmos3-super/2gpu/download_model.sh
-
 # Install the exact native reasoner runtime.
 results/cosmos3-super/2gpu/install_native_runtime.sh
 
-# Run all smoke/reference/lifecycle cases (or pass generation/reasoner/lifecycle).
+# Run all smoke/lifecycle cases (or pass generation/reasoner/lifecycle).
 results/cosmos3-super/2gpu/run_h100_validation.sh all
 
-# Generate/resume the full-quality PR examples (token-free, checkpoint-pinned).
+# Generate/resume the full-quality PR examples (checkpoint-pinned).
 results/cosmos3-super/2gpu/run_generation_quality.sh
+```
+
+Reasoner accuracy — prefetch the CI eval subsets (public datasets, no token),
+then serve the TP=2 reasoner and score MMMU/VideoMME/GSM8K in one run:
+
+```bash
+python -m benchmarks.dataset.prepare --dataset mmmu-ci-50
+python -m benchmarks.dataset.prepare --dataset videomme-ci-50
+python -m benchmarks.dataset.prepare --dataset gsm8k-test-50
+
+COSMOS3_SUPER_RUN_GPU=1 pytest tests/test_model/test_cosmos3_super_reasoner_ci.py -s -x
 ```
 
 ### Saved evidence
 
-- `smoke-t2i-layerwise.{log,xml}` and `smoke-generation-layerwise.{log,xml}`: 8 passing generation cases.
-- `reasoner-reference.{log,xml}`: 3 passing, reference-asserting reasoner cases.
+- `reasoner-accuracy/`: MMMU/VideoMME/GSM8K accuracy run — `summary.json` plus raw
+  per-sample `{mmmu,videomme,gsm8k}_results.json` (50 CI samples each, 0 failed).
 - `lifecycle-reasoner.{log,xml}`: passing cancellation/failure/cleanup/restart case.
+- Functional smoke (all generation + reasoner modes) is regenerated on demand by
+  `run_h100_validation.sh`; transient small-resolution outputs are not retained.
 - `generation-quality-{t2v,i2v,t2vs}.log`, `generation-quality/results.jsonl`, and
   `generation-quality/{t2v,i2v,t2vs}-output.mp4`: full structured-prompt quality evidence.
 - `expected-failure-stock-2gpu-fsdp-oom.{log,xml}`: preserved stock 2-GPU OOM.

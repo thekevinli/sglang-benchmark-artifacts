@@ -10,14 +10,17 @@ This directory contains the curated evidence for the 2-H100 validation campaign.
   coverage. The T2I output is deterministic across both owner starts, so one of
   the two byte-identical images is retained while the log/XML records both runs.
 - `reasoner-reference.{log,xml}` and `reasoner-reference-artifacts/`: passing
-  text/image/video reference comparisons with stable, descriptive filenames.
+  text/image/video reasoner plumbing smoke cases with stable filenames.
+- `reasoner-accuracy/`: MMMU/VideoMME/GSM8K accuracy run — `summary.json` plus
+  raw per-sample `{mmmu,videomme,gsm8k}_results.json` (50 CI samples each).
 - `lifecycle-reasoner.{log,xml}`: passing cancellation, failure, cleanup, and
   restart coverage.
 - `expected-failure-*`: intentional evidence for the stock 2-GPU residency OOM
   and the released SGLang 0.5.19 reasoner-registration incompatibility. These
   are not current test regressions.
-- `download_model.sh`, `install_native_runtime.sh`, `run_h100_validation.sh`, and
-  `run_generation_quality.sh`: token-free reproduction entry points.
+- `install_native_runtime.sh`, `run_h100_validation.sh`, and
+  `run_generation_quality.sh`: reproduction entry points. Weights download at
+  serve time (`resolve_checkpoint`), so no separate model-download script.
 
 `cosmos3-super-2gpu-artifacts.tar.gz` is a portable copy of the curated files.
 `BUNDLE_SHA256` contains its SHA-256 integrity digest; it is not a benchmark,
