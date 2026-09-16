@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="70.331" timestamp="2026-09-15T17:47:13.678928-07:00" hostname="pluto-prod-yutengl-dev-202-3-0"><properties><property name="CHECKPOINT_REVISION" value="fe77b66696d645f663b8f27e942b3b43e4629e23" /><property name="NATIVE_REVISION" value="pypi:sglang==0.5.19;flashinfer-python==0.6.18" /><property name="omni_revision" value="5695a9b0ec7c8118949f92c06e22b0c200a52c8e" /><property name="gpu_ids" value="[0, 1]" /><property name="gpu_names" value="['NVIDIA H100 80GB HBM3', 'NVIDIA H100 80GB HBM3']" /></properties><testcase classname="tests.integration.cosmos3.test_super_gpu" name="test_super_reasoner[text]" time="54.693"><failure message="RuntimeError: Process reasoner died during startup (exit code -9)&#10;Startup failure detail:&#10;Traceback (most recent call last):&#10;  File &quot;/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/pipeline/stage_workers.py&quot;, line 451, in stage_process_main&#10;    _run_process(spec, ready_event, log)&#10;  File &quot;/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/pipeline/stage_workers.py&quot;, line 530, in _run_process&#10;    _construct_stage(&#10;  File &quot;/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/pipeline/stage_workers.py&quot;, line 667, in _construct_stage&#10;    scheduler = _construct_scheduler(spec, gpu_id, log)&#10;  File &quot;/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/pipeline/stage_workers.py&quot;, line 920, in _construct_scheduler&#10;    return _invoke()&#10;  File &quot;/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/pipeline/stage_workers.py&quot;, line 911, in _invoke&#10;    return factory(**factory_args)&#10;  File &quot;/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/models/cosmos3/reasoner.py&quot;, line 328, in create_reasoner_scheduler&#10;    engine = Engine(**kwargs)&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/utils.py&quot;, line 393, in __call__&#10;    return module(*args, **kwargs)&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/entrypoints/engine.py&quot;, line 290, in __init__&#10;    ) = self._launch_subprocesses(&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/entrypoints/engine.py&quot;, line 1211, in _launch_subprocesses&#10;    tokenizer_manager, template_manager = init_tokenizer_manager_func(&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/entrypoints/engine.py&quot;, line 174, in init_tokenizer_manager&#10;    tokenizer_manager = TokenizerManagerClass(server_args, port_args)&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/managers/tokenizer_manager.py&quot;, line 436, in __init__&#10;    self.init_tokenizer_and_processor()&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/managers/tokenizer_manager.py&quot;, line 499, in init_tokenizer_and_processor&#10;    self.mm_processor = get_mm_processor(&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/managers/multimodal_processor.py&quot;, line 82, in get_mm_processor&#10;    processor_cls = get_mm_processor_cls(hf_config, server_args, model_config)&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/managers/multimodal_processor.py&quot;, line 53, in get_mm_processor_cls&#10;    get_resolved_model_impl(model_config) == ModelImpl.TRANSFORMERS&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/model_loader/utils.py&quot;, line 252, in get_resolved_model_impl&#10;    _, resolved_arch = get_model_architecture(model_config)&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/model_loader/utils.py&quot;, line 229, in get_model_architecture&#10;    architectures = resolve_transformers_arch(model_config, architectures)&#10;  File &quot;/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/model_loader/utils.py&quot;, line 154, in resolve_transformers_arch&#10;    raise ValueError(&#10;ValueError: Cannot find model module. 'Cosmos3ForConditionalGeneration' is not a registered model in the Transformers library (only relevant if the model is meant to be in Transformers) and 'AutoModel' is not present in the model config's 'auto_map' (relevant if the model is custom).">tmp_path = PosixPath('/home/colligo/sglang-wiki/repos/sglang-omni/results/cosmos3-super/2gpu/smoke-reasoner-artifacts/test_super_reasoner_text_0')
+mode = 'text'
+deployment = ('/mnt/localssd/models/Cosmos3-Super-fe77b66696d645f663b8f27e942b3b43e4629e23', [0, 1])
+
+    @pytest.mark.parametrize("mode", ["text", "image", "video"])
+    @pytest.mark.asyncio
+    async def test_super_reasoner(tmp_path, mode, deployment):
+        import base64
+    
+        from PIL import Image
+    
+        from sglang_omni.client import GenerateRequest, SamplingParams
+    
+        model, devices = deployment
+        config = _config("reasoner", model, devices, tmp_path)
+        prompt = "What is two plus two? Give a short answer."
+        if mode != "text":
+            if mode == "image":
+                reference = tmp_path / "red.png"
+                Image.new("RGB", (224, 224), "red").save(reference)
+                url = (
+                    "data:image/png;base64,"
+                    + base64.b64encode(reference.read_bytes()).decode()
+                )
+                question = "Name the dominant color."
+            else:
+                reference = tmp_path / "colors.mp4"
+                _write_video(
+                    reference,
+                    [
+                        Image.new("RGB", (224, 224), color)
+                        for color in ("red", "blue")
+                        for _ in range(8)
+                    ],
+                    4,
+                )
+                url = str(reference)
+                question = "Describe how the color changes from the beginning to the end."
+            key = f"{mode}_url"
+            prompt = {
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": question},
+                            {"type": key, key: {"url": url}},
+                        ],
+                    }
+                ]
+            }
+&gt;       async with _running(config) as runner:
+
+tests/integration/cosmos3/test_super_gpu.py:343: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.10/contextlib.py:199: in __aenter__
+    return await anext(self.gen)
+tests/integration/cosmos3/test_super_gpu.py:105: in _running
+    await runner.start(
+sglang_omni/pipeline/mp_runner.py:637: in start
+    await asyncio.gather(*(g.wait_ready(timeout) for g in wave))
+/usr/lib/python3.10/asyncio/tasks.py:304: in __wakeup
+    future.result()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sglang_omni.pipeline.stage_workers.StageGroup object at 0x7f04d2feb0a0&gt;
+timeout = 1800.0
+
+    async def wait_ready(self, timeout: float) -&gt; None:
+        """Block until every TP rank signals ready or *timeout* expires."""
+        loop = asyncio.get_running_loop()
+        deadline = time.monotonic() + timeout
+    
+        for i, event in enumerate(self._ready_events):
+            proc = self._processes[i]
+            spec = self.process_specs[i]
+            process_label = spec.process_name
+            startup_error_channel = self._startup_error_channels[i]
+    
+            while not event.is_set():
+                remaining = deadline - time.monotonic()
+                if remaining &lt;= 0:
+                    details = ""
+                    try:
+                        traceback_text = startup_error_channel.get_nowait()
+                    except queue.Empty:
+                        pass
+                    else:
+                        details = f"\nStartup failure detail:\n{traceback_text}"
+                    raise TimeoutError(
+                        f"Process {process_label} did not become ready "
+                        f"within {timeout:.0f}s{details}"
+                    )
+                if not proc.is_alive():
+                    details = ""
+                    try:
+                        traceback_text = startup_error_channel.get(timeout=0.2)
+                    except queue.Empty:
+                        pass
+                    else:
+                        details = f"\nStartup failure detail:\n{traceback_text}"
+&gt;                   raise RuntimeError(
+                        f"Process {process_label} died during startup "
+                        f"(exit code {proc.exitcode}){details}"
+                    )
+E                   RuntimeError: Process reasoner died during startup (exit code -9)
+E                   Startup failure detail:
+E                   Traceback (most recent call last):
+E                     File "/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/pipeline/stage_workers.py", line 451, in stage_process_main
+E                       _run_process(spec, ready_event, log)
+E                     File "/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/pipeline/stage_workers.py", line 530, in _run_process
+E                       _construct_stage(
+E                     File "/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/pipeline/stage_workers.py", line 667, in _construct_stage
+E                       scheduler = _construct_scheduler(spec, gpu_id, log)
+E                     File "/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/pipeline/stage_workers.py", line 920, in _construct_scheduler
+E                       return _invoke()
+E                     File "/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/pipeline/stage_workers.py", line 911, in _invoke
+E                       return factory(**factory_args)
+E                     File "/home/colligo/sglang-wiki/repos/sglang-omni/sglang_omni/models/cosmos3/reasoner.py", line 328, in create_reasoner_scheduler
+E                       engine = Engine(**kwargs)
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/utils.py", line 393, in __call__
+E                       return module(*args, **kwargs)
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/entrypoints/engine.py", line 290, in __init__
+E                       ) = self._launch_subprocesses(
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/entrypoints/engine.py", line 1211, in _launch_subprocesses
+E                       tokenizer_manager, template_manager = init_tokenizer_manager_func(
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/entrypoints/engine.py", line 174, in init_tokenizer_manager
+E                       tokenizer_manager = TokenizerManagerClass(server_args, port_args)
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/managers/tokenizer_manager.py", line 436, in __init__
+E                       self.init_tokenizer_and_processor()
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/managers/tokenizer_manager.py", line 499, in init_tokenizer_and_processor
+E                       self.mm_processor = get_mm_processor(
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/managers/multimodal_processor.py", line 82, in get_mm_processor
+E                       processor_cls = get_mm_processor_cls(hf_config, server_args, model_config)
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/managers/multimodal_processor.py", line 53, in get_mm_processor_cls
+E                       get_resolved_model_impl(model_config) == ModelImpl.TRANSFORMERS
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/model_loader/utils.py", line 252, in get_resolved_model_impl
+E                       _, resolved_arch = get_model_architecture(model_config)
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/model_loader/utils.py", line 229, in get_model_architecture
+E                       architectures = resolve_transformers_arch(model_config, architectures)
+E                     File "/home/colligo/sglang-wiki/envs/run/lib/python3.10/site-packages/sglang/srt/model_loader/utils.py", line 154, in resolve_transformers_arch
+E                       raise ValueError(
+E                   ValueError: Cannot find model module. 'Cosmos3ForConditionalGeneration' is not a registered model in the Transformers library (only relevant if the model is meant to be in Transformers) and 'AutoModel' is not present in the model config's 'auto_map' (relevant if the model is custom).
+
+sglang_omni/pipeline/stage_workers.py:360: RuntimeError</failure></testcase><testcase time="0.002" /></testsuite></testsuites>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="75.567" timestamp="2026-09-15T17:16:34.518237-07:00" hostname="pluto-prod-yutengl-dev-202-3-0"><properties><property name="CHECKPOINT_REVISION" value="fe77b66696d645f663b8f27e942b3b43e4629e23" /><property name="NATIVE_REVISION" value="pypi:sglang==0.5.19;flashinfer-python==0.6.18" /><property name="omni_revision" value="5695a9b0ec7c8118949f92c06e22b0c200a52c8e" /><property name="gpu_ids" value="[0, 1]" /><property name="gpu_names" value="['NVIDIA H100 80GB HBM3', 'NVIDIA H100 80GB HBM3']" /></properties><testcase classname="tests.integration.cosmos3.test_super_gpu" name="test_super_generation[t2i]" time="75.493"><failure message="RuntimeError: Native generation failed without producing an output">tmp_path = PosixPath('/home/colligo/sglang-wiki/repos/sglang-omni/results/cosmos3-super/2gpu/smoke-t2i-artifacts/test_super_generation_t2i_0')
+mode = 't2i'
+deployment = ('/mnt/localssd/models/Cosmos3-Super-fe77b66696d645f663b8f27e942b3b43e4629e23', [0, 1])
+
+    @pytest.mark.parametrize(
+        "mode",
+        [
+            "t2i",
+            "t2v",
+            "i2v",
+            "v2v",
+            "sound",
+            "policy",
+            "inverse_dynamics",
+            "forward_dynamics",
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_super_generation(tmp_path, mode, deployment):
+        from sglang_omni.client import GenerateRequest
+    
+        model, devices = deployment
+        config = _config("generation", model, devices, tmp_path / "media")
+        inputs = _generation_case(mode, tmp_path)
+        # T2I also checks serving after the first owner completely shuts down.
+        for _ in range(2 if mode == "t2i" else 1):
+            async with _running(config) as runner:
+&gt;               chunk = await _generate(
+                    runner, GenerateRequest(prompt=inputs, stream=False)
+                )
+
+tests/integration/cosmos3/test_super_gpu.py:285: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/integration/cosmos3/test_super_gpu.py:128: in _generate
+    chunks = await asyncio.wait_for(
+/usr/lib/python3.10/asyncio/tasks.py:445: in wait_for
+    return fut.result()
+tests/integration/cosmos3/test_super_gpu.py:124: in collect
+    async for chunk in Client(runner.coordinator).generate(request):
+sglang_omni/client/client.py:71: in generate
+    result = await self._coordinator.submit(req_id, omni_request)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;sglang_omni.pipeline.coordinator.Coordinator object at 0x7fc1e1143850&gt;
+request_id = '95f51c31-07c3-4f6e-a4da-1fc34bf9e294'
+request = OmniRequest(inputs={'prompt': 'A red box moves slowly right on a white table, stationary camera.', 'width': 832, 'heig...'min_p': 0.0, 'repetition_penalty': 1.0, 'stop': [], 'stop_token_ids': [], 'seed': None, 'stream': False}, metadata={})
+
+    async def submit(self, request_id: str, request: OmniRequest | Any) -&gt; Any:
+        """Submit a request to the pipeline and wait for completion."""
+        await self._submit_request(request_id, request)
+    
+        future = self._completion_futures[request_id]
+        try:
+&gt;           result = await future
+E           RuntimeError: Native generation failed without producing an output
+
+sglang_omni/pipeline/coordinator.py:358: RuntimeError</failure></testcase></testsuite></testsuites>

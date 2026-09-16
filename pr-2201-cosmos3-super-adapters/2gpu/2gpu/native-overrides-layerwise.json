@@ -1,0 +1,10 @@
+{
+  "generation": {
+    "component_residency": {
+      "transformer": "layerwise-offload"
+    },
+    "layerwise_resident_layers": {
+      "transformer": 1
+    }
+  }
+}
