@@ -1,123 +1,174 @@
-## H100 validation (2 GPUs)
+## Cosmos3-Super on 2x H100
 
-Validated `cosmos3/super-adapters` at Omni commit `5695a9b0ec7c8118949f92c06e22b0c200a52c8e` on one node with 2x NVIDIA H100 80GB HBM3. This is the 2-GPU campaign; 4- and 8-GPU qualification remain separate follow-ups.
+This validates the `cosmos3/super-adapters` branch on a single node with two
+NVIDIA H100 80GB HBM3 GPUs. It's the 2-GPU campaign — 4- and 8-GPU qualification
+are separate follow-ups.
 
-Checkpoint: `nvidia/Cosmos3-Super@fe77b66696d645f663b8f27e942b3b43e4629e23` (124 GB local snapshot).
+Checkpoint: `nvidia/Cosmos3-Super@fe77b66696d645f663b8f27e942b3b43e4629e23`
+(124 GB snapshot). Both generation and the reasoner run on the same native
+runtime: SGLang pinned at commit `4e9e407d3720045d59cae185c05f33649f4e544e`, with
+`sglang-kernel==0.4.7` and `flashinfer-python==0.6.18`. The runtime is pinned
+because the released SGLang 0.5.19 can't serve the reasoner — it doesn't register
+`Cosmos3ForConditionalGeneration`.
 
-Native runtimes:
+### Generation modes
 
-- Generation smoke: `sglang==0.5.19`, `flashinfer-python==0.6.18`.
-- Reasoner: official SGLang commit `4e9e407d3720045d59cae185c05f33649f4e544e`, `sglang-kernel==0.4.7`, `flashinfer-python==0.6.18`. The released 0.5.19 SRT does not register `Cosmos3ForConditionalGeneration`.
+Every generation mode works. These numbers come from
+`tests/test_model/test_cosmos3_super_generator_ci.py`, which runs each mode in
+its own fresh server — so a case's peak memory isn't inflated by the previous
+one — at TP=2 with 24 DiT layers kept resident:
 
-### Functional coverage
+| Mode | Result | Latency | Peak GPU 0 / 1 | Notes |
+| --- | --- | ---: | ---: | --- |
+| T2I | PASS | 129.0 s | 57.7 / 60.9 GB | single frame, structured prompt |
+| T2V | PASS | 258.6 s | 65.7 / 66.7 GB | 1280x720, 121 frames |
+| I2V | PASS | 263.3 s | 66.9 / 67.4 GB | image-conditioned |
+| T2V + sound | PASS | 259.9 s | 66.3 / 67.2 GB | ~5.04 s AAC audio track |
+| V2V continuation | PASS | 319.9 s | 66.9 / 67.8 GB | continues the bundled i2v clip |
+| Forward dynamics | PASS | 558.7 s | 57.3 / 56.8 GB | 4-chunk AgiBotWorld rollout, 640x640, 29-D |
+| Inverse dynamics | PASS | 192.6 s | 59.1 / 58.6 GB | AV clip -> action, shape [60, 9] |
 
-All generation modes (T2I, T2V, I2V, V2V continuation, sound, policy, inverse and forward dynamics) and reasoner modes (text, image, video) pass the opt-in GPU smoke suite `tests/integration/cosmos3/test_super_gpu.py`, which also asserts each owned stage/native process tree is gone after shutdown. Run it via `run_h100_validation.sh` (see Reproduction). The generation quality benchmark below is the full-resolution evidence.
+All seven use the checkpoint's own bundled example inputs, so there's no external
+data to fetch:
 
-### Native lifecycle
+```bash
+COSMOS3_SUPER_RUN_GPU=1 pytest tests/test_model/test_cosmos3_super_generator_ci.py -s
+```
 
-The dedicated lifecycle case passed in 212.50s:
+Policy (Edge-Policy-DROID) is the one mode missing from that table: the checkpoint
+ships no policy example, and building the input needs an external DROID sample.
+It still runs — along with the text, image, and video reasoner paths — in the
+opt-in smoke suite, which also checks that every owned stage/native process tree
+is gone after shutdown:
 
-1. Started the TP=2 reasoner.
-2. Admitted and cancelled a long native request.
-3. Sent a follow-up request through the same deployment and received `4`.
-4. Terminated the owned stage process and observed the runner's `Dead stage process` failure path within 30s.
-5. Asserted process-tree cleanup.
-6. Started a fresh native owner and successfully inferred `4` again.
+```bash
+COSMOS3_SUPER_RUN_GPU=1 pytest tests/integration/cosmos3/test_super_gpu.py -s
+```
 
-The Python resource tracker still warned about 6 semaphore names and 3 shared-memory names at interpreter exit. No owned worker remained and both GPUs returned to 81,079 MiB free. Treat the tracker warning as an open lifecycle-cleanliness finding.
+### Reasoner lifecycle
 
-### Two-GPU memory fit
+A dedicated lifecycle case passed in 212.5 s. It starts the TP=2 reasoner, admits
+and cancels a long request, confirms a follow-up still answers `4`, kills the
+owned stage process and watches the runner raise `Dead stage process` within 30 s,
+asserts the process tree is cleaned up, then starts a fresh owner and gets `4`
+again. One open nit: the Python resource tracker still reports 6 leaked semaphores
+and 3 shared-memory names at interpreter exit, even though no worker survives and
+both GPUs return to 81,079 MiB free — worth tracking as a cleanliness follow-up.
 
-This is a real topology constraint, not an un-freed GPU: the stock generation config targets **4 GPUs** (`runtime_gpu_ids: [0, 1, 2, 3]`, `hsdp_shard_dim: 4`), and the model itself **declares a 120 GiB threshold for keeping its DiT resident** while excluding the DiT from automatic layerwise offload. On the 2-GPU node the run started with **78.7 GiB free per GPU** (GPUs were idle), yet the unmodified setup kept the 117.85 GB transformer resident and OOMed during the first T2I component transition: GPU 0 had 371 MiB free and failed a 500 MiB allocation; GPU 1 had 46.56 MiB free and failed an 80 MiB allocation. So serving Super on 2x80GB requires explicit DiT layerwise offload.
+### Fitting Super on 2x 80GB
 
-The complete generation matrix and benchmarks pass with this explicitly labeled 2-GPU fallback:
+Super's stock generation config is built for 4 GPUs (`runtime_gpu_ids: [0, 1, 2, 3]`,
+`hsdp_shard_dim: 4`), and the model declares a 120 GiB threshold for keeping its
+DiT resident while leaving the DiT out of the automatic layerwise-offload set. On
+two idle GPUs (78.7 GiB free each) the unmodified setup keeps the full 117.85 GB
+transformer resident and runs out of memory on the first T2I transition — GPU 0
+had 371 MiB free and couldn't place a 500 MiB tensor. So two 80GB cards need the
+DiT offloaded explicitly:
 
 ```json
 {
   "generation": {
     "component_residency": {"transformer": "layerwise-offload"},
-    "layerwise_resident_layers": {"transformer": 1}
+    "layerwise_resident_layers": {"transformer": 24}
   }
 }
 ```
 
-The effective topology is FSDP/HSDP shard dimension 2 plus native auto-CFG parallel degree 2. Layerwise setup reports 2/128 transformer layers resident and approximately 2.77 GB transformer VRAM, with the rest checkpoint-mapped/host-backed. This result should not be presented as evidence that the stock 4-GPU YAML is wrong; it only establishes that stock residency does not fit 2x80GB.
+Keeping 24 of the 128 DiT layers resident and streaming the rest from host each
+step is the 2-GPU default (FSDP shard dim 2 plus native auto-CFG parallel degree
+2). It holds up on the heaviest workload — a full 189-frame 1280x720
+image-to-video — at about 71 GiB/device; the CI recipe below is lighter
+(121 frames), and fewer resident layers fit comfortably too. None of this says the
+stock 4-GPU YAML is wrong; it just doesn't fit two cards fully resident.
 
 ### Reasoner accuracy
 
-Omni vs. ground truth, 50 CI samples per benchmark, TP=2. Scored by the shared `benchmarks/` harness (`parse_multi_choice_response` for the multiple-choice sets, numeric match for GSM8K); all runs had 0 failed requests.
+Omni output scored against ground truth on 50 CI samples per benchmark at TP=2,
+using the shared `benchmarks/` scorer (`parse_multi_choice_response`), with no
+failed requests:
 
 | Evaluation | Sample source | Omni |
 | --- | --- | ---: |
 | MMMU | `mmmu-ci-50` | 30/50 (60%) |
-| MMMU, strict scoring | Same 50 CI examples; random-fallback answers count as incorrect | 30/50 (60%) |
+| MMMU, strict scoring | Same 50 samples; random-fallback answers counted as incorrect | 30/50 (60%) |
 | VideoMME | `videomme-ci-50` | 28/50 (56%) |
-| GSM8K | First 50 of `openai/gsm8k` (`main`/`test`) | 47/50 (94%) |
 
-MMMU shows ~2-sample run-to-run variance from concurrency-8 batching (temperature 0 is not fully deterministic). Raw per-sample records and the summary are under `reasoner-accuracy/`; reproduce with the commands below.
+MMMU moves by a sample or two between runs — at concurrency 8, temperature 0 isn't
+fully deterministic. Per-sample records and the summary are in `reasoner-accuracy/`,
+and the commands are under Reproduction.
 
 ### Generation quality
 
-These are branch outputs from the checkpoint's official structured prompts and quality recipe: 1280x720, 189 frames at 24 fps (7.875 seconds), 35 steps, CFG 6, flow shift 10, and seed 17. Each MP4 was decoded as 189/189 frames and the three frame contact sheets below were inspected for temporal prompt adherence. 
+The clips below are branch outputs from the checkpoint's official structured
+prompts at a CI-speed recipe: 1280x720 (the largest resolution we support),
+121 frames at 24 fps (~5.04 s — 121 = 4*30+1, the nearest count the temporal VAE
+accepts to 120), 35 steps, CFG 6, flow shift 10, seed 17, with the 24-layer DiT
+offload above. Each clip decoded to its full frame count. T2I runs the same recipe
+at a single frame from a structured (Cosmos3-schema) prompt. V2V and the action
+modes use the checkpoint's bundled examples; forward dynamics is the full 4-chunk
+AgiBotWorld rollout, where each chunk conditions on the previous chunk's last
+frame. The audiovisual clip carried a ~5.04 s AAC track with real (nonzero) energy.
+
 <!--
-GitHub PR upload note: drag the three MP4s from generation-quality/ into the
-Result cells in the PR editor. GitHub will replace these relative links with
-user-attachments URLs and render video players, as in #2107. Do the same for
-the contact sheets if inline still previews are wanted. The relative links below
-remain directly usable in the saved artifact bundle.
+GitHub upload note: drag the MP4s from generation-quality/ into the Result cells
+in the PR editor and GitHub rewrites the relative links into rendered players (as
+in #2107). The relative links below stay usable in the saved artifact bundle.
 -->
 
-| Task | Prompt | Result |
+| Task | Prompt / input | Result |
 | --- | --- | --- |
+| T2I | Structured Cosmos3 T2I prompt: a small warehouse robot moving a blue box across a clean floor | <img src="generation-quality/t2i-output.png" width="720" alt="T2I warehouse robot moving a blue box"> |
 | T2V | [NVIDIA structured prompt](https://huggingface.co/nvidia/Cosmos3-Super/blob/fe77b66696d645f663b8f27e942b3b43e4629e23/assets/example_t2v_prompt.json) | [t2v-output.mp4](generation-quality/t2v-output.mp4)<br><img src="generation-quality/previews/t2v-contact-sheet.jpg" width="720" alt="T2V start, middle, and end frames"> |
 | I2V | [NVIDIA structured prompt](https://huggingface.co/nvidia/Cosmos3-Super/blob/fe77b66696d645f663b8f27e942b3b43e4629e23/assets/example_i2v_prompt.json) + [conditioning image](https://huggingface.co/nvidia/Cosmos3-Super/blob/fe77b66696d645f663b8f27e942b3b43e4629e23/assets/example_i2v_input.jpg) | [i2v-output.mp4](generation-quality/i2v-output.mp4)<br><img src="generation-quality/previews/i2v-contact-sheet.jpg" width="720" alt="I2V start, middle, and end frames"> |
-| T2V + sound | [NVIDIA audiovisual structured prompt](https://huggingface.co/nvidia/Cosmos3-Super/blob/fe77b66696d645f663b8f27e942b3b43e4629e23/assets/example_t2vs_prompt.json) | [t2vs-output.mp4](generation-quality/t2vs-output.mp4)<br><img src="generation-quality/previews/t2vs-contact-sheet.jpg" width="720" alt="Audiovisual T2V start, middle, and end frames"> |
-
-Observed output and request metrics on the 2-H100 layerwise fallback:
-
-| Task | Media validation | End-to-end request latency | Sampled peak GPU memory (MiB, GPU 0 / 1) |
-| --- | --- | ---: | ---: |
-| T2V | 1280x720, 189 frames, 7.875s | 462.264s | 26,458 / 27,431 |
-| I2V | 1280x720, 189 frames, 7.875s | 463.593s | 27,928 / 28,499 |
-| T2V + sound | 1280x720, 189 frames, 7.875s; stereo 48kHz AAC, 7.880s | 464.462s | 27,158 / 28,331 |
-
-The audiovisual output decoded to 370 audio frames / 7.893s with nonzero energy; measured level was -33.9 dB mean and -4.1 dB maximum. Visual inspection shows the robot holding the jar, pouring into the cup, and returning upright.
+| T2V + audio | [NVIDIA audiovisual structured prompt](https://huggingface.co/nvidia/Cosmos3-Super/blob/fe77b66696d645f663b8f27e942b3b43e4629e23/assets/example_t2vs_prompt.json) | [t2vs-output.mp4](generation-quality/t2vs-output.mp4)<br><img src="generation-quality/previews/t2vs-contact-sheet.jpg" width="720" alt="Audiovisual T2V start, middle, and end frames"> |
+| V2V continuation | Bundled i2v prompt, continuing the checkpoint's `example_i2v_output.mp4` | [v2v-output.mp4](generation-quality/v2v-output.mp4)<br><img src="generation-quality/previews/v2v-contact-sheet.jpg" width="720" alt="V2V continuation start, middle, and end frames"> |
+| Forward dynamics | Bundled AgiBotWorld example (`example_action_fd_agibotworld_*`), 4-chunk rollout, 29-D actions | [forward_dynamics-output.mp4](generation-quality/forward_dynamics-output.mp4) (4 chunks concatenated)<br><img src="generation-quality/previews/forward_dynamics-contact-sheet.jpg" width="720" alt="Forward-dynamics rollout start, middle, and end frames"> |
+| Inverse dynamics | Bundled AV example video (`example_action_id_av_0_input.mp4`) | [inverse_dynamics-action.json](generation-quality/inverse_dynamics-action.json) — predicted action, shape `[60, 9]` |
 
 ### Reproduction
 
-The checkpoint is gated and the serving path auto-downloads the pinned revision on first launch (`resolve_checkpoint` → `snapshot_download`), so no separate download step is needed — just export `HF_TOKEN` in the environment.
+The checkpoint is gated and the serving path pulls the pinned revision on first
+launch (`resolve_checkpoint` -> `snapshot_download`), so there's no separate
+download step — just have `HF_TOKEN` in the environment. The pinned native runtime
+is the one listed at the top.
+
+Smoke + lifecycle across every mode (generation, reasoner, and policy):
 
 ```bash
-# Install the exact native reasoner runtime.
-results/cosmos3-super/2gpu/install_native_runtime.sh
-
-# Run all smoke/lifecycle cases (or pass generation/reasoner/lifecycle).
-results/cosmos3-super/2gpu/run_h100_validation.sh all
-
-# Generate/resume the full-quality PR examples (checkpoint-pinned).
-results/cosmos3-super/2gpu/run_generation_quality.sh
+COSMOS3_SUPER_RUN_GPU=1 pytest tests/integration/cosmos3/test_super_gpu.py -s
 ```
 
-Reasoner accuracy — prefetch the CI eval subsets (public datasets, no token), then serve the TP=2 reasoner and score MMMU/VideoMME/GSM8K in one run:
+Full-resolution generation for all seven recorded modes (inputs are bundled in the
+checkpoint):
+
+```bash
+COSMOS3_SUPER_RUN_GPU=1 pytest tests/test_model/test_cosmos3_super_generator_ci.py -s
+```
+
+Reasoner accuracy — prefetch the CI eval subsets (public datasets, no token), then
+serve the TP=2 reasoner and score MMMU and VideoMME in one run:
 
 ```bash
 python -m benchmarks.dataset.prepare --dataset mmmu-ci-50
 python -m benchmarks.dataset.prepare --dataset videomme-ci-50
-python -m benchmarks.dataset.prepare --dataset gsm8k-test-50
 
 COSMOS3_SUPER_RUN_GPU=1 pytest tests/test_model/test_cosmos3_super_reasoner_ci.py -s -x
 ```
 
 ### Saved evidence
 
-- `reasoner-accuracy/`: MMMU/VideoMME/GSM8K accuracy run — `summary.json` plus raw
-  per-sample `{mmmu,videomme,gsm8k}_results.json` (50 CI samples each, 0 failed).
-- `lifecycle-reasoner.{log,xml}`: passing cancellation/failure/cleanup/restart case.
-- Functional smoke (all generation + reasoner modes) is regenerated on demand by
-  `run_h100_validation.sh`; transient small-resolution outputs are not retained.
-- `generation-quality-{t2v,i2v,t2vs}.log`, `generation-quality/results.jsonl`, and
-  `generation-quality/{t2v,i2v,t2vs}-output.mp4`: full structured-prompt quality evidence.
-- `expected-failure-stock-2gpu-fsdp-oom.{log,xml}`: preserved stock 2-GPU OOM.
-- `expected-failure-sglang-0.5.19-reasoner-registration.{log,xml}`: preserved
-  released-runtime incompatibility that motivates the pinned native revision.
-- `SHA256SUMS`: artifact integrity manifest.
+- `generation-quality/`: recorded outputs for all seven generation modes —
+  `t2i-output.png`, the `{t2v,i2v,t2vs,v2v}-output.mp4` and
+  `forward_dynamics-output.mp4` clips, `inverse_dynamics-action.json`, and the
+  contact sheets under `previews/`.
+- `reasoner-accuracy/`: the MMMU/VideoMME run — `summary.json` plus the raw
+  per-sample `{mmmu,videomme}_results.json` (50 samples each, 0 failed).
+- `lifecycle-reasoner.{log,xml}`: the cancellation/failure/cleanup/restart case.
+- `expected-failure-stock-2gpu-fsdp-oom.{log,xml}`: the stock 2-GPU OOM described
+  above, kept as evidence (not a current regression).
+- `expected-failure-sglang-0.5.19-reasoner-registration.{log,xml}`: the released
+  runtime rejecting the reasoner, which is why the native revision is pinned.
+- `SHA256SUMS`: integrity manifest for the bundle.
+
+Functional smoke and lifecycle aren't kept as static artifacts — they reproduce
+from the committed `tests/integration/cosmos3/test_super_gpu.py`.
